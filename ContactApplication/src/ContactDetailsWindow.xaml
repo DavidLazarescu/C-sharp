@@ -5,26 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactApp"
         mc:Ignorable="d"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        
+        
         Title="ContactDetailsWindow" Height="450" Width="400" Background="Gray">
     <Grid>
         <StackPanel Margin="10">
             <TextBox x:Name="nameTextBox"
+                       Style="{StaticResource baseTextBox}"
                        Margin="0, 0, 0, 5"/>
 
             <TextBox x:Name="emailTextBox"
+                       Style="{StaticResource baseTextBox}"
                        Margin="0, 0, 0, 5"/>
 
             <TextBox x:Name="phoneNumberTextBox"
+                       Style="{StaticResource baseTextBox}"
+                       Margin="0, 0, 0, 5"/>
+
+            <TextBox x:Name="notesNumberTextBox"
+                       Style="{StaticResource baseTextBox}"
+                       Height="100"
                        Margin="0, 0, 0, 5"/>
 
             <Button x:Name="updateButton"
+                    Margin="0, 20, 0, 0"
                     Content="Update"
                     Click="updateButton_Click"/>
 
             <Button x:Name="deleteButton"
                     Content="Delete"
                     Click="deleteButton_Click"
-                    Margin="0, 8, 0, 10"
+                    Margin="0, 5, 0, 0"
                     FontWeight="Bold"
                     FontSize="13"
                     Foreground="White"

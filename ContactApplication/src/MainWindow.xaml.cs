@@ -29,6 +29,8 @@ namespace DesktopContactApp
             contacts = new List<Contact>();
 
             readDatabase();
+
+            this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
         }
 
 
@@ -75,6 +77,19 @@ namespace DesktopContactApp
             {
                 ContactDetailsWindow contactDetailsWindow = new ContactDetailsWindow(contact);
                 contactDetailsWindow.ShowDialog();
+                readDatabase();
+            }
+        }
+
+        private void OnButtonKeyDown(object sender, KeyEventArgs e)
+        {
+            //Shortcut to add new contact
+            if(e.Key == Key.N)
+            {
+                NewContactWindow newContactWindow = new NewContactWindow();
+
+                newContactWindow.ShowDialog();
+
                 readDatabase();
             }
         }

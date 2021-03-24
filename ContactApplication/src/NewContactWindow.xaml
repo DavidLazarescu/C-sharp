@@ -5,21 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactApp"
         mc:Ignorable="d"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        
         Title="NewContactWindow" Height="450" Width="400" Background="Gray">
     <Grid>
+        
         <StackPanel Margin="10">
+
+            <TextBlock Text="Name:"
+                       Style="{StaticResource descriptionTextBlock}"
+                       Margin="0,10, 0, 2"/>
             <TextBox x:Name="nameTextBox"
+                       Style="{StaticResource baseTextBox}"
                        Margin="0, 0, 0, 5"/>
 
+            <TextBlock Text="Email:"
+                       Style="{StaticResource descriptionTextBlock}"
+                       Margin="0, 0, 0, 0"/>                            
             <TextBox x:Name="emailTextBox"
+                       Style="{StaticResource baseTextBox}"
                        Margin="0, 0, 0, 5"/>
 
+            <TextBlock Text="Phone Number:"
+                       Style="{StaticResource descriptionTextBlock}"
+                       Margin="0, 0, 0, 0"/>            
             <TextBox x:Name="phoneNumberTextBox"
+                       Style="{StaticResource baseTextBox}"
                        Margin="0, 0, 0, 5"/>
-            
+
+            <TextBlock Text="Notes:"
+                       Style="{StaticResource descriptionTextBlock}"
+                       Margin="0, 15, 0, 0"/>
+
+            <TextBox x:Name="notesTextBox"
+                       Style="{StaticResource baseTextBox}"
+                       AcceptsReturn="True"
+                       Height="100"
+                       Margin="0, 0, 0, 5"
+                       HorizontalScrollBarVisibility="Auto"
+                       VerticalScrollBarVisibility="Auto"/>    
+
+
             <Button Content="Save"
+                    Margin="0, 30, 0, 0"
                     Click="Button_Click"/>
-            
+
+            <Button x:Name="cancelButton" Content="Cancel"
+                    Background="#b42727"
+                    Margin="0, 10, 0, 0"
+                    Click="CancelButton_Click"/>
+
         </StackPanel>
     </Grid>
 </Window>

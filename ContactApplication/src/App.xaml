@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:DesktopContactApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <Style TargetType="TextBox" x:Key="baseTextBox">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="descriptionTextBlock">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
     </Application.Resources>
 </Application>
