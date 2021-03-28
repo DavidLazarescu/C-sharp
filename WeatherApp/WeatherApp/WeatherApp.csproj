@@ -1,0 +1,183 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\WeatherIcons\01-s.png" />
+    <None Remove="Resources\WeatherIcons\02-s.png" />
+    <None Remove="Resources\WeatherIcons\03-s.png" />
+    <None Remove="Resources\WeatherIcons\04-s.png" />
+    <None Remove="Resources\WeatherIcons\05-s.png" />
+    <None Remove="Resources\WeatherIcons\06-s.png" />
+    <None Remove="Resources\WeatherIcons\07-s.png" />
+    <None Remove="Resources\WeatherIcons\08-s.png" />
+    <None Remove="Resources\WeatherIcons\11-s.png" />
+    <None Remove="Resources\WeatherIcons\12-s.png" />
+    <None Remove="Resources\WeatherIcons\13-s.png" />
+    <None Remove="Resources\WeatherIcons\14-s.png" />
+    <None Remove="Resources\WeatherIcons\15-s.png" />
+    <None Remove="Resources\WeatherIcons\16-s.png" />
+    <None Remove="Resources\WeatherIcons\17-s.png" />
+    <None Remove="Resources\WeatherIcons\18-s.png" />
+    <None Remove="Resources\WeatherIcons\19-s.png" />
+    <None Remove="Resources\WeatherIcons\20-s.png" />
+    <None Remove="Resources\WeatherIcons\21-s.png" />
+    <None Remove="Resources\WeatherIcons\22-s.png" />
+    <None Remove="Resources\WeatherIcons\23-s.png" />
+    <None Remove="Resources\WeatherIcons\24-s.png" />
+    <None Remove="Resources\WeatherIcons\25-s.png" />
+    <None Remove="Resources\WeatherIcons\26-s.png" />
+    <None Remove="Resources\WeatherIcons\29-s.png" />
+    <None Remove="Resources\WeatherIcons\30-s.png" />
+    <None Remove="Resources\WeatherIcons\31-s.png" />
+    <None Remove="Resources\WeatherIcons\32-s.png" />
+    <None Remove="Resources\WeatherIcons\33-s.png" />
+    <None Remove="Resources\WeatherIcons\34-s.png" />
+    <None Remove="Resources\WeatherIcons\35-s.png" />
+    <None Remove="Resources\WeatherIcons\36-s.png" />
+    <None Remove="Resources\WeatherIcons\37-s.png" />
+    <None Remove="Resources\WeatherIcons\38-s.png" />
+    <None Remove="Resources\WeatherIcons\39-s.png" />
+    <None Remove="Resources\WeatherIcons\40-s.png" />
+    <None Remove="Resources\WeatherIcons\41-s.png" />
+    <None Remove="Resources\WeatherIcons\42-s.png" />
+    <None Remove="Resources\WeatherIcons\43-s.png" />
+    <None Remove="Resources\WeatherIcons\44-s.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\WeatherIcons\01-s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\WeatherIcons\02-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\03-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\04-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\05-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\06-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\07-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\08-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\11-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\12-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\13-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\14-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\15-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\16-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\17-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\18-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\19-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\20-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\21-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\22-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\23-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\24-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\25-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\26-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\29-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\30-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\31-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\32-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\33-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\34-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\35-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\36-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\37-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\38-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\39-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\40-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\41-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\42-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\43-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\WeatherIcons\44-s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
