@@ -1,0 +1,370 @@
+﻿<Window x:Class="QuizzGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:QuizzGame.ViewModel"
+        xmlns:local="clr-namespace:QuizzGame"
+        mc:Ignorable="d"
+        Title="QuizzGame" 
+        Height="700" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <vm:QuizzVM x:Key="vm"/>
+    </Window.Resources>
+
+    <Grid Background="Gray"
+          DataContext="{StaticResource vm}">
+
+        <StackPanel>
+
+            <TextBlock Text="-- QuizzGame --"
+                       HorizontalAlignment="Center"
+                       FontSize="30"/>
+
+            <StackPanel Visibility="{Binding MenuVis}"
+                        Height="640"
+                        Margin="0, 100, 0, 0">
+
+                <Image Source="/Resources/SettingsIcon.jpg" Height="36" Width="32"
+                       HorizontalAlignment="Right"
+                       Margin="0, -120, 20, 135">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding ToInfoWindowCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    
+                </Image>
+
+                <DockPanel>
+                    <TextBlock Text="Question Theme"
+                               FontSize="16"
+                               Margin="365, 0, 0, 0"/>
+
+                    <TextBlock Text="Amount"
+                               FontSize="16"
+                               Margin="130, 0, 0, 0"/>
+                </DockPanel>
+
+                <DockPanel>
+                    <ComboBox 
+                              ItemsSource="{Binding KindOfQuestionsComboBox}"
+                              SelectedValue="{Binding KindOfQuestionsComboBoxAnswer, Mode=TwoWay}"
+                              FontSize="15"
+                              Margin="275, 5, 0, 0"
+                              Width="300"
+                              MaxDropDownHeight="150"/>
+
+
+                    <ComboBox ItemsSource="{Binding AmountOfQuestionsComboBox}"
+                              SelectedValue="{Binding AmountOfQuestionsComboBoxAnswer, Mode=TwoWay}"
+                              FontSize="15"
+                              Margin="0, 5, 280, 0"
+                              Width="75"
+                              MaxDropDownHeight="150"/>
+                </DockPanel>
+
+                <Border Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0, 200, 0, 0"
+                                CornerRadius="6"
+                                BorderBrush="Gray"
+                                Background="LightGray"
+                        Width="150"
+                                BorderThickness="2"
+                                Padding="8">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding PlayGameCommand}"
+                                                           CommandParameter="{Binding CurrentQuestionAnswers[0]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="-2">
+
+                        <TextBlock Text="Play"
+                                   FontSize="25"
+                                   FontWeight="Black"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+
+
+            <StackPanel Visibility="{Binding GameVis}">
+
+                <DockPanel>
+                    <TextBlock Margin="150, 30, 0, -40"
+                               FontSize="20"
+                               HorizontalAlignment="Center">
+                        <TextBlock Text="Questions Left:"/>
+                        <TextBlock Text="{Binding QuestionsLeftCount}"/>
+                    </TextBlock>
+
+                    <TextBlock Margin="100, 30, 0, -40"
+                               FontSize="20"
+                               HorizontalAlignment="Center">
+                        <TextBlock Text="Category: "/>
+                        <TextBlock Text="{Binding KindOfQuestionsComboBoxAnswer}"/>
+                    </TextBlock>
+                </DockPanel>
+
+                <StackPanel HorizontalAlignment="Center"
+                          Margin="0, 50, 0, 0"
+                          Height="Auto"
+                          Width="700"
+                          Background="LightGray">
+
+                    <TextBlock Text="{Binding CurrentQuestion.question}"
+                               Margin="0, 20, 0, 0"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+
+                    <TextBlock Text="{Binding Answer}"
+                               FontSize="18"
+                               HorizontalAlignment="Center"/>
+
+                    <Grid Height="300"
+                          Width="700"
+                          Margin="0, 30, 0, 0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Border Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="10"
+                                CornerRadius="6"
+                                BorderBrush="Gray"
+                                Background="{Binding BG1}"
+                                BorderThickness="2"
+                                Padding="8">
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="-2">
+
+                                <TextBlock Text="{Binding CurrentQuestionAnswers[0]}"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ChooseAnswerCommand}"
+                                                           CommandParameter="{Binding CurrentQuestionAnswers[0]}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </Border>
+
+                        <Border Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="10"
+                                CornerRadius="6"
+                                BorderBrush="Gray"
+                                Background="{Binding BG2}"
+                                BorderThickness="2"
+                                Padding="8">
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="-2">
+
+                                <TextBlock Text="{Binding CurrentQuestionAnswers[1]}"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ChooseAnswerCommand}"
+                                                           CommandParameter="{Binding CurrentQuestionAnswers[1]}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="10"
+                                CornerRadius="6"
+                                BorderBrush="Gray"
+                                Background="{Binding BG3}"
+                                BorderThickness="2"
+                                Padding="8">
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="-2">
+
+                                <TextBlock Text="{Binding CurrentQuestionAnswers[2]}"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ChooseAnswerCommand}"
+                                                           CommandParameter="{Binding CurrentQuestionAnswers[2]}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="10"
+                                CornerRadius="6"
+                                BorderBrush="Gray"
+                                Background="{Binding BG4}"
+                                BorderThickness="2"
+                                Padding="8">
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="-2">
+
+                                <TextBlock Text="{Binding CurrentQuestionAnswers[3]}"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ChooseAnswerCommand}"
+                                                           CommandParameter="{Binding CurrentQuestionAnswers[3]}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </Border>
+
+                    </Grid>
+
+                </StackPanel>
+
+
+
+                <StackPanel Margin="0, 40, 0, 0"
+                            Background="Transparent">
+                    <Border CornerRadius="10" 
+                            Background="LightGray"
+                            BorderBrush="Black" 
+                            BorderThickness="3"
+                            Width="180">
+                        <Button Style="{StaticResource noHoverEffect}"
+                            Background="Transparent"
+                            Width="175"
+                            BorderThickness="0"
+                            Command="{Binding NextQuestionCommand}"
+                            CommandParameter="{Binding RoundOver}">
+
+                            <TextBlock Text="Next Question ->"
+                                       Margin="10"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       FontSize="18"/>
+                        </Button>
+                    </Border>
+                </StackPanel>
+
+
+
+            </StackPanel>
+
+
+            <StackPanel Visibility="{Binding GameOverVis}">
+
+                <TextBlock Text="You finished your game!"
+                           Margin="0, 40, 0, 0"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+
+                <DockPanel>
+                    <TextBlock HorizontalAlignment="Left"
+                               Margin="200, 50, 0, 0">
+                        <TextBlock Text="Correct Answers:"
+                                   Foreground="LimeGreen"
+                                   FontSize="25"/>
+                        <TextBlock Text="{Binding CorrectAnswers}"
+                                   Foreground="LimeGreen"
+                                   FontSize="25"/>
+                    </TextBlock>
+
+
+                    <TextBlock HorizontalAlignment="Right"
+                               Margin="0, 50, 200, 0">
+                        <TextBlock Text="Wrong Answers:"
+                                   Foreground="Red"
+                                   FontSize="25"/>
+                        <TextBlock Text="{Binding WrongAnswers}"
+                                   Foreground="Red"
+                                   FontSize="25"/>
+                    </TextBlock>
+                </DockPanel>
+
+                <TextBlock FontSize="30"
+                           HorizontalAlignment="Center"
+                           Margin="0, 40, 0, 0">
+                    <TextBlock Text="Total answers:"/>
+                    <TextBlock Text="{Binding Questions.Count}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="30"
+                           HorizontalAlignment="Center"
+                           Margin="0, 40, 0, 0">
+                    
+                    <TextBlock Text="You answered:"/>
+                    <TextBlock Text="{Binding PercentageOfRightAnswers, Mode=TwoWay}"/>
+                    <TextBlock Text="%"/>
+                    <TextBlock Text="Right"/>
+                    
+                </TextBlock>
+
+
+                <StackPanel Margin="0, 150, 0, 0"
+                            Background="Transparent">
+                    <Border CornerRadius="10" 
+                            Background="LightGray"
+                            BorderBrush="Black" 
+                            BorderThickness="3"
+                            Width="180">
+                        <Button Style="{StaticResource noHoverEffect}"
+                            Background="Transparent"
+                            Width="175"
+                            BorderThickness="0"
+                            Command="{Binding ToMenuWindowCommand}">
+
+                            <TextBlock Text="Back to Menu"
+                                       Margin="10"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       FontSize="18"/>
+                        </Button>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
