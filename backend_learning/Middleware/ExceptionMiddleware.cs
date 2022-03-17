@@ -44,12 +44,9 @@ namespace backend_learning.Middleware
                                 new ApiErrorDto(context.Response.StatusCode, ex.Message, ex.StackTrace)
                                 : new ApiErrorDto(context.Response.StatusCode, ex.Message);
 
-                // Serialize the response and set it up as needed
-                var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true };
-                var jsonResponse = JsonSerializer.Serialize(response, jsonOptions);
 
                 // Write the response back to the user
-                await context.Response.WriteAsync(jsonResponse);
+                await context.Response.WriteAsync(response.ToString());
             }
         }
     }

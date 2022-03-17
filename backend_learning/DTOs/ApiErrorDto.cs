@@ -1,3 +1,6 @@
+using System.Text.Json;
+
+
 namespace backend_learning.DTOs
 {
     public class ApiErrorDto
@@ -15,5 +18,9 @@ namespace backend_learning.DTOs
             Message = message;
             StackTrace = stackTrace;
         }
+
+
+        public override string ToString() => JsonSerializer.Serialize(this, new JsonSerializerOptions 
+            { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true });
     }
 }
