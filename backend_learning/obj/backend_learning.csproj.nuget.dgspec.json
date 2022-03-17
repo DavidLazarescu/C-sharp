@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/creapermann/Programming/C-Sharp/backend_learning/backend_learning.csproj": {}
+    "/home/creapermann/Programming/C-sharp/backend_learning/backend_learning.csproj": {}
   },
   "projects": {
-    "/home/creapermann/Programming/C-Sharp/backend_learning/backend_learning.csproj": {
+    "/home/creapermann/Programming/C-sharp/backend_learning/backend_learning.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/creapermann/Programming/C-Sharp/backend_learning/backend_learning.csproj",
+        "projectUniqueName": "/home/creapermann/Programming/C-sharp/backend_learning/backend_learning.csproj",
         "projectName": "backend_learning",
-        "projectPath": "/home/creapermann/Programming/C-Sharp/backend_learning/backend_learning.csproj",
+        "projectPath": "/home/creapermann/Programming/C-sharp/backend_learning/backend_learning.csproj",
         "packagesPath": "/home/creapermann/.nuget/packages/",
-        "outputPath": "/home/creapermann/Programming/C-Sharp/backend_learning/obj/",
+        "outputPath": "/home/creapermann/Programming/C-sharp/backend_learning/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/creapermann/.nuget/NuGet/NuGet.Config"
@@ -45,6 +45,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.DataProtection.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

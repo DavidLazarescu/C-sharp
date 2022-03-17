@@ -7,21 +7,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend_learning.Controllers
 {
-    [Route("api/users")]
+    // A controller is basically dealing with what happens when a user connects to a specified endpoint.
+    [Route("api/users")]  // This is specifying a default endpoint for the class, which can be changed by every method
     public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
 
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository)  // Getting "userRepository" by Dependency Injection
         {
             _userRepository = userRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers() => Ok(await _userRepository.GetAllUserDtos());
 
+        // This GET method is connected to the endpoint "api/users" because it didn't specify any, so it uses the classes default one.
+        // It gets called and executed everytime someone calls: "localhost:xxxx/api/users"
+        [HttpGet]  // the "HttpGet" attribute specifies that the method is reacting to a get request
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers() => Ok(await _userRepository.GetAllUserDtos());  // Returning all users
+
+        // This is also a GET method but this time it is connected to the endpoint "api/users/email", also by putting "{email}"
+        // into curly braces, you give it as a parameter to the method itself, so calling: "localhost:xxxx/api/users/testman@gmail.com"
+        // would call this method with the argument "testman@gmail.com"
         [HttpGet("{email}")]
-        public async Task<ActionResult<UserDto>> GetUser(string email) => Ok(await _userRepository.GetUserDtoByEmail(email));
+        public async Task<ActionResult<UserDto>> GetUser(string email) => Ok(await _userRepository.GetUserDtoByEmail(email));  // Returning user with the email
     }
 }

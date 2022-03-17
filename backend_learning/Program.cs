@@ -5,6 +5,7 @@
 // Program only exists to educate/practise
 
 
+using System.Globalization;
 using backend_learning.Extensions;
 using backend_learning.Middleware;
 
@@ -14,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // --- Services ---
-// While the builder is not yet built (through builder.Build()), you can add services to it, which
+// While the builder is not built (through builder.Build()), you can add services to it, which
 // can be used by every non-static method by dependency injection (Constructor injection or Method Injection with the
 // attibute [FromServices] infront of parameters). This process will be automatic after adding the services.
 // There are different scopes which you can choose for your services:
@@ -46,13 +47,10 @@ app.AdditionalConfiguration(app.Services);
 // This is the pipeline through which each HTTP request runs through, their sequence is important,
 // because later functionalities/configurations are dependent on earlier ones.
 // You can add your own middle ware here, to create one more step, the app must run through at each HTTP request,
-// you add a middleware with the method "WebApplication.UseMiddleware<MiddlewareClass>()". Each Middleware class
-// needs to take a RequestDelegate (this is the method which should be called next in the HTTP pipeline) as argument
-// and needs to define a method called "Invoke" or "InvokeAsync" which takes an HttpContext as argument and calls
-// the RequestDelegate (which was given to the constructor, I will call it "_next" for now) "await _next(context);"
+// you add a middleware with the method "WebApplication.UseMiddleware<MiddlewareClass>()" (Look into "ExceptionMiddleware for more info).
 app.UseMiddleware<ExceptionMiddleware>();  // This is a custom exception handler middleware (Described in its class)
-app.UseHttpsRedirection();
-app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-app.UseAuthorization();
-app.MapControllers();
+app.UseHttpsRedirection();  // When connecting to the http address, automatically redirect to the https address
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());  // Allows requests from any source
+app.UseAuthorization();  // Adds authorization
+app.MapControllers();  // Manages setting up all the different endpoints
 app.Run();  // This finally runs the HTTP request after all the configuration

@@ -6,9 +6,9 @@ namespace backend_learning.Entities
     {
         public int UserId { get; set; }
 
-        [Required]
+        [Required]  // This is a Data annotation, it does some validation on the data, here it says that the Name cant be null
         public string Name { get; set; }
-
+        
         public string Email { get; set; }
 
         public DateTime TimeOfCreation { get; set; }
@@ -17,7 +17,9 @@ namespace backend_learning.Entities
 
         public Job Job { get; set; }
 
-        public string Password { get; set; }
+        public byte[] Password { get; set; }
+
+        public byte[] PasswordSeed { get ; set; }
         
         public string SecretMessage { get; set; }
     }

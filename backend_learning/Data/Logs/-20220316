@@ -1,0 +1,423 @@
+2022-03-16T19:04:58.2663432+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:04:58.2699724+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:04:58.2701831+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:04:58.2706416+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:04:58.2706879+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:05:16.5926882+01:00 0HMG7EU2VAEOD:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:05:16.9213781+01:00 0HMG7EU2VAEOD:00000002 [INF] Executed DbCommand ("24"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 28), @__loginDto_Password_1='?' (Size = 8)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:05:16.9767802+01:00 0HMG7EU2VAEOD:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 28), @__Hash_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+FROM \"Users\" AS \"u\"
+WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1)
+LIMIT 2" (0723d8ff)
+2022-03-16T19:05:16.9913377+01:00 0HMG7EU2VAEOD:00000002 [ERR] Sequence contains no elements. (7a84cf47)
+System.InvalidOperationException: Sequence contains no elements.
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at backend_learning.Controllers.AccountController.Login(LoginDto loginDto) in /home/creapermann/Programming/C-sharp/backend_learning/Controllers/AccountController.cs:line 54
+   at lambda_method5(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at backend_learning.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in /home/creapermann/Programming/C-sharp/backend_learning/Middleware/ExceptionMiddleware.cs:line 32
+2022-03-16T19:05:35.7699314+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T19:07:35.9686055+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:07:35.9724652+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:07:35.9726752+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:07:35.9729108+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:07:35.9729333+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:07:43.1118252+01:00 0HMG7EVDEUDDJ:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:07:43.4456702+01:00 0HMG7EVDEUDDJ:00000002 [INF] Executed DbCommand ("24"ms) [Parameters=["@__email_0='?' (Size = 23)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0)" (0723d8ff)
+2022-03-16T19:07:43.6507623+01:00 0HMG7EVDEUDDJ:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 23), @p2='?' (Size = 5), @p3='?' (Size = 13), @p4='?' (Size = 4), @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Users\" (\"Age\", \"Email\", \"Name\", \"Password\", \"SecretMessage\", \"TimeOfCreation\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT \"UserId\"
+FROM \"Users\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:07:43.6744910+01:00 0HMG7EVDEUDDJ:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@p6='?' (Size = 3), @p7='?' (Size = 7), @p8='?' (Size = 13), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Job\" (\"Description\", \"Location\", \"Name\", \"UserId\", \"YearlySalary\")
+VALUES (@p6, @p7, @p8, @p9, @p10);
+SELECT \"JobId\"
+FROM \"Job\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:08:22.6593070+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T19:09:45.0942670+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:09:45.0979662+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:09:45.0981691+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:09:45.0983958+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:09:45.0984287+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:09:51.5160810+01:00 0HMG7F0JCCKLL:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:09:51.8572641+01:00 0HMG7F0JCCKLL:00000002 [ERR] Failed executing DbCommand ("113"ms) [Parameters=["@__email_0='?' (Size = 23)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0)" (627a98df)
+2022-03-16T19:09:51.8837437+01:00 0HMG7F0JCCKLL:00000002 [ERR] An exception occurred while iterating over the results of a query for context type '"backend_learning.Data.DataContext"'."
+""Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Users'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()" (f5c7ac34)
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Users'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2022-03-16T19:09:51.8952422+01:00 0HMG7F0JCCKLL:00000002 [ERR] SQLite Error 1: 'no such table: Users'. (62a041fc)
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Users'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at backend_learning.Data.Repositories.UserRepository.ContainsUserWithEmail(String email) in /home/creapermann/Programming/C-sharp/backend_learning/Data/Repositories/UserRepository.cs:line 24
+   at backend_learning.Controllers.AccountController.Register(RegisterDto registerDTO) in /home/creapermann/Programming/C-sharp/backend_learning/Controllers/AccountController.cs:line 28
+   at lambda_method5(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at backend_learning.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in /home/creapermann/Programming/C-sharp/backend_learning/Middleware/ExceptionMiddleware.cs:line 32
+2022-03-16T19:10:04.0105520+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T19:10:38.8981591+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:10:38.9012650+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:10:38.9014772+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:10:38.9017149+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:10:38.9017462+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:11:41.2652399+01:00 0HMG7F13D0PKT:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:11:41.6103116+01:00 0HMG7F13D0PKT:00000002 [INF] Executed DbCommand ("23"ms) [Parameters=["@__email_0='?' (Size = 23)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0)" (0723d8ff)
+2022-03-16T19:11:41.8202551+01:00 0HMG7F13D0PKT:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 23), @p2='?' (Size = 5), @p3='?' (Size = 30), @p4='?' (Size = 4), @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Users\" (\"Age\", \"Email\", \"Name\", \"Password\", \"SecretMessage\", \"TimeOfCreation\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT \"UserId\"
+FROM \"Users\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:11:41.8451020+01:00 0HMG7F13D0PKT:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@p6='?' (Size = 3), @p7='?' (Size = 7), @p8='?' (Size = 13), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Job\" (\"Description\", \"Location\", \"Name\", \"UserId\", \"YearlySalary\")
+VALUES (@p6, @p7, @p8, @p9, @p10);
+SELECT \"JobId\"
+FROM \"Job\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:12:42.7196396+01:00 0HMG7F13D0PKT:00000003 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:12:42.7295541+01:00 0HMG7F13D0PKT:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:12:42.7684358+01:00 0HMG7F13D0PKT:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__Hash_1='?' (Size = 31)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+FROM \"Users\" AS \"u\"
+WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1)
+LIMIT 2" (0723d8ff)
+2022-03-16T19:12:42.7842809+01:00 0HMG7F13D0PKT:00000003 [ERR] Sequence contains no elements. (7a84cf47)
+System.InvalidOperationException: Sequence contains no elements.
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at backend_learning.Controllers.AccountController.Login(LoginDto loginDto) in /home/creapermann/Programming/C-sharp/backend_learning/Controllers/AccountController.cs:line 54
+   at lambda_method142(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at backend_learning.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in /home/creapermann/Programming/C-sharp/backend_learning/Middleware/ExceptionMiddleware.cs:line 32
+2022-03-16T19:12:47.0773663+01:00 0HMG7F13D0PKT:00000004 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:12:47.0805124+01:00 0HMG7F13D0PKT:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:12:47.0814683+01:00 0HMG7F13D0PKT:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__Hash_1='?' (Size = 31)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+FROM \"Users\" AS \"u\"
+WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1)
+LIMIT 2" (0723d8ff)
+2022-03-16T19:12:47.0826331+01:00 0HMG7F13D0PKT:00000004 [ERR] Sequence contains no elements. (7a84cf47)
+System.InvalidOperationException: Sequence contains no elements.
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at backend_learning.Controllers.AccountController.Login(LoginDto loginDto) in /home/creapermann/Programming/C-sharp/backend_learning/Controllers/AccountController.cs:line 54
+   at lambda_method142(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at backend_learning.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in /home/creapermann/Programming/C-sharp/backend_learning/Middleware/ExceptionMiddleware.cs:line 32
+2022-03-16T19:16:08.4096886+01:00 0HMG7F13D0PKV:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:16:08.4126497+01:00 0HMG7F13D0PKV:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:16:08.4189394+01:00 0HMG7F13D0PKV:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__Hash_1='?' (Size = 32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+FROM \"Users\" AS \"u\"
+WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1)
+LIMIT 2" (0723d8ff)
+2022-03-16T19:16:42.9717881+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:16:42.9747813+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:16:42.9749730+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:16:42.9751840+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:16:42.9752365+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:16:46.7565991+01:00 0HMG7F4GL9KC8:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:16:47.1053030+01:00 0HMG7F4GL9KC8:00000002 [INF] Executed DbCommand ("65"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:16:47.1568358+01:00 0HMG7F4GL9KC8:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+FROM \"Users\" AS \"u\"
+WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1)
+LIMIT 2" (0723d8ff)
+2022-03-16T19:17:39.7308587+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:17:39.7340865+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:17:39.7343174+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:17:39.7345146+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:17:39.7345376+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:17:43.9991450+01:00 0HMG7F51N64SG:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:17:44.3443679+01:00 0HMG7F51N64SG:00000002 [INF] Executed DbCommand ("62"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__loginDto_Password_1='?' (Size = 13)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__loginDto_Password_1))" (0723d8ff)
+2022-03-16T19:18:03.0110391+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:18:03.0140978+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:18:03.0142928+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:18:03.0145048+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:18:03.0145386+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:18:05.7649988+01:00 0HMG7F586U9EM:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:18:06.1362286+01:00 0HMG7F586U9EM:00000002 [INF] Executed DbCommand ("84"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 23), @__Hash_1='?' (Size = 30)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1))" (0723d8ff)
+2022-03-16T19:18:22.7399447+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T19:22:52.0512792+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T19:22:52.0543916+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T19:22:52.0545799+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T19:22:52.0548212+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T19:22:52.0548453+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T19:23:26.5836826+01:00 0HMG7F87QA2A5:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:23:26.8913312+01:00 0HMG7F87QA2A5:00000002 [INF] Executed DbCommand ("25"ms) [Parameters=["@__email_0='?' (Size = 27)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0)" (0723d8ff)
+2022-03-16T19:23:27.0989436+01:00 0HMG7F87QA2A5:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 27), @p2='?' (Size = 5), @p3='?' (Size = 30), @p4='?' (Size = 4), @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Users\" (\"Age\", \"Email\", \"Name\", \"Password\", \"SecretMessage\", \"TimeOfCreation\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT \"UserId\"
+FROM \"Users\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:23:27.1233587+01:00 0HMG7F87QA2A5:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@p6='?' (Size = 3), @p7='?' (Size = 7), @p8='?' (Size = 13), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Job\" (\"Description\", \"Location\", \"Name\", \"UserId\", \"YearlySalary\")
+VALUES (@p6, @p7, @p8, @p9, @p10);
+SELECT \"JobId\"
+FROM \"Job\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T19:23:56.8935354+01:00 0HMG7F87QA2A5:00000003 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T19:23:56.9048293+01:00 0HMG7F87QA2A5:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__Hash_1='?' (Size = 32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__Hash_1))" (0723d8ff)
+2022-03-16T20:03:48.9524877+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:03:48.9559569+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:03:48.9561424+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:03:48.9563863+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:03:48.9564099+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:03:52.3338341+01:00 0HMG7FUQO3LSP:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:03:52.6515404+01:00 0HMG7FUQO3LSP:00000002 [INF] Executed DbCommand ("25"ms) [Parameters=["@__email_0='?' (Size = 27)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0)" (0723d8ff)
+2022-03-16T20:03:52.8705669+01:00 0HMG7FUQO3LSP:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 27), @p2='?' (Size = 5), @p3='?' (Size = 32) (DbType = Binary), @p4='?' (Size = 4), @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Users\" (\"Age\", \"Email\", \"Name\", \"Password\", \"SecretMessage\", \"TimeOfCreation\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT \"UserId\"
+FROM \"Users\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T20:03:52.8968312+01:00 0HMG7FUQO3LSP:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@p6='?' (Size = 3), @p7='?' (Size = 7), @p8='?' (Size = 13), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Job\" (\"Description\", \"Location\", \"Name\", \"UserId\", \"YearlySalary\")
+VALUES (@p6, @p7, @p8, @p9, @p10);
+SELECT \"JobId\"
+FROM \"Job\"
+WHERE changes() = 1 AND \"rowid\" = last_insert_rowid();" (0723d8ff)
+2022-03-16T20:04:05.3524296+01:00 0HMG7FUQO3LSP:00000003 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:04:05.3654160+01:00 0HMG7FUQO3LSP:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:04:24.6949329+01:00 0HMG7FUQO3LSP:00000004 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:04:24.6981137+01:00 0HMG7FUQO3LSP:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:04:37.6332898+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:05:09.1350105+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:05:09.1380422+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:05:09.1382589+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:05:09.1384638+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:05:09.1384947+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:05:34.5730827+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:05:46.5189215+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:05:46.5234591+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:05:46.5237189+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:05:46.5240404+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:05:46.5240809+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:07:25.3741027+01:00 0HMG7G07L9SBV:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:07:25.7988110+01:00 0HMG7G07L9SBV:00000002 [INF] Executed DbCommand ("26"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:07:46.8971333+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:12:42.6600322+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:12:42.6632013+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:12:42.6634606+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:12:42.6637168+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:12:42.6637532+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:13:08.5854790+01:00 0HMG7G3S3M4B2:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:13:08.9384811+01:00 0HMG7G3S3M4B2:00000002 [INF] Executed DbCommand ("25"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:14:46.2948613+01:00 0HMG7G3S3M4B2:00000003 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:14:46.2984590+01:00 0HMG7G3S3M4B2:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:14:51.3092814+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:14:58.0860752+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:14:58.0895953+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:14:58.0898212+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:14:58.0900917+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:14:58.0901239+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:16:44.1610331+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:16:44.9337172+01:00 0HMG7G59QEN4A:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:16:45.3638707+01:00 0HMG7G59QEN4A:00000002 [INF] Executed DbCommand ("27"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:17:23.7144960+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:17:23.7175446+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:17:23.7177388+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:17:23.7179406+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:17:23.7179640+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:37:42.8836911+01:00  [WRN] As of "03/16/2022 19:17:32 +00:00", the heartbeat has been running for "00:20:10.5559041" which is longer than "00:00:01". This could be caused by thread pool starvation. (bfc986a0)
+2022-03-16T20:37:43.5440912+01:00 0HMG7G6EJB8JF:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:37:43.8726915+01:00 0HMG7G6EJB8JF:00000002 [INF] Executed DbCommand ("23"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:38:56.1885918+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:39:00.7600999+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:39:00.7634408+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:39:00.7637540+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:39:00.7639884+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:39:00.7640213+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:39:35.7865135+01:00 0HMG7GII6190E:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:39:36.2103189+01:00 0HMG7GII6190E:00000002 [INF] Executed DbCommand ("37"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:39:52.3305541+01:00 0HMG7GII6190E:00000003 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:39:52.3427810+01:00 0HMG7GII6190E:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:41:13.4118575+01:00 0HMG7GII6190E:00000004 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:41:13.4233257+01:00 0HMG7GII6190E:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:41:28.3586626+01:00  [INF] Application is shutting down... (90f52c38)
+2022-03-16T20:41:32.5230065+01:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-03-16T20:41:32.5260277+01:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-03-16T20:41:32.5262086+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-16T20:41:32.5264049+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-16T20:41:32.5264433+01:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-03-16T20:42:18.3101875+01:00 0HMG7GK1S1347:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-03-16T20:42:18.6562976+01:00 0HMG7GK1S1347:00000002 [INF] Executed DbCommand ("24"ms) [Parameters=["@__loginDto_Email_0='?' (Size = 27), @__GetHash_1='?' (Size = 32) (DbType = Binary)"], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Users\" AS \"u\"
+    WHERE (\"u\".\"Email\" = @__loginDto_Email_0) AND (\"u\".\"Password\" = @__GetHash_1))" (0723d8ff)
+2022-03-16T20:42:21.7516775+01:00  [INF] Application is shutting down... (90f52c38)

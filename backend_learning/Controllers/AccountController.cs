@@ -1,58 +1,98 @@
+using System.Security.Cryptography;
+using System.Text;
 using backend_learning.Data;
 using backend_learning.DTOs;
 using backend_learning.Entities;
 using backend_learning.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
 
 
 namespace backend_learning.Controllers
 {
     public class AccountController : BaseController
     {
-        private readonly DataContext _context;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController(DataContext context, IUserRepository userRepository)
+
+        public AccountController(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
-            _context = context;
+            _mapper = mapper;
         }
 
 
-        [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(RegisterDto registerDTO)
+        [HttpPost("register")]  // Specifies that this endpoint is reachable by a POST request to the endpoint "x/api/register"
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await _userRepository.ContainsUserWithEmail(registerDTO.Email))
+            // Checks if the email already exists
+            if (await _userRepository.ContainsUserWithEmail(registerDto.Email))
                 return BadRequest("A user with this email already exists");
 
+            // hash the password for input password get the password and its hashing key back
+            var hashedPasswordAndKey = GetHashAndKey(registerDto.Password);
+
+            // Create a user with all the data gathered by the registerDto and the hashing of the password
             User user = new User
             {
-                Name = registerDTO.Name,
-                Age = registerDTO.Age,
-                Email = registerDTO.Email,
-                Job = registerDTO.Job,
-                SecretMessage = registerDTO.Message,
-                Password = registerDTO.Password,
+                Name = registerDto.Name,
+                Age = registerDto.Age,
+                Email = registerDto.Email,
+                Job = registerDto.Job,
+                SecretMessage = registerDto.Message,
+                Password = hashedPasswordAndKey.Item1,
+                PasswordSeed = hashedPasswordAndKey.Item2,
                 TimeOfCreation = DateTime.UtcNow
             };
 
-            await _context.AddAsync(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddUser(user);
+            await _userRepository.SaveChanges();
 
-            return user;
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
-        public async Task<ActionResult<User>> Login(LoginDto loginDto)
+        // Take a string, hash it and return the hashed string and the hashing key
+        private ValueTuple<byte[], byte[]> GetHashAndKey(string toHash)
         {
-            if(await _context.Users.AnyAsync(user => user.Email == loginDto.Email && user.Password == loginDto.Password))
-                return BadRequest("The provided email or password is wrong");
+            var hmac = new HMACSHA256();
+            var result = hmac.ComputeHash(Encoding.UTF8.GetBytes(toHash));
 
-            var user = await _context.Users
-                .Where(user => user.Email == loginDto.Email && user.Password == loginDto.Password)
-                .FirstAsync();
+            return (result, hmac.Key);
+        }
 
-            return Ok(user);
+
+        [HttpPost("login")]  // Specifies that this endpoint is reachable by a POST request to the endpoint "x/api/login"
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+        {
+            // Get the user
+            var user = await _userRepository.GetUserByEmail(loginDto.Email);
+
+            // If a user with this email and password does not exist, return an error
+            if(user == null || !PasswordsEqual(user, loginDto.Password))
+                return BadRequest("The provided email or password was wrong");
+
+            return Ok(_mapper.Map<UserDto>(user));
+        }
+
+        // Compate a user's password with a raw password
+        private bool PasswordsEqual(User user, string rawPassword)
+        {
+            var rawPasswordHashed = GetHash(rawPassword, user.PasswordSeed);
+            
+            return user.Password.SequenceEqual(rawPasswordHashed);
+        }
+
+        // Get the hashed value from a string with an existing key
+        private byte[] GetHash(string toHash, byte[] key)
+        {
+            var hmac = new HMACSHA256(key);
+            var result = hmac.ComputeHash(Encoding.UTF8.GetBytes(toHash));
+
+            return result;
         }
     }
 }

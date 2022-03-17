@@ -6,18 +6,23 @@ using AutoMapper;
 using backend_learning.Data;
 using backend_learning.Data.Repositories;
 using backend_learning.Interfaces;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace backend_learning.Extensions
 {
-    public static class AppliactionServiceExtensions
+    // A class for extensions to the application's services. We are extracting them into an extension method, so they
+    // dont clutter up the "Program.cs" file
+    public static class ServiceExtensions
     {
+        // The extension-method which adds the services
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddLogging();
             services.AddAutoMapper(typeof(Program).Assembly);
+
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));

@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend_learning.Data.Repositories
 {
+    // The repository pattern implements a layer of abstraction between the classes which want to access the database and
+    // EF core. You are able to write cleaner and more understandable code, by not writing the LINQ queries yourself, but
+    // calling methods which do what you want 
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
@@ -17,7 +20,6 @@ namespace backend_learning.Data.Repositories
             _context = context;
             _mapper = mapper;
         }
-
 
         public async Task<bool> ContainsUserWithEmail(string email)
         {
@@ -60,6 +62,8 @@ namespace backend_learning.Data.Repositories
                                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                                 .SingleOrDefaultAsync();
         }
+
+        public async Task AddUser(User user) => await _context.AddAsync(user);
 
         public async Task<bool> SaveChanges() => await _context.SaveChangesAsync() > 0;
     }
