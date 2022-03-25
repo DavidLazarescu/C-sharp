@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using backend_learning.Data;
@@ -20,8 +21,9 @@ namespace backend_learning.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJobRepository, JobRepository>();
             services.AddLogging();
-            services.AddAutoMapper(typeof(Program).Assembly);
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddDbContext<DataContext>(options =>
             {

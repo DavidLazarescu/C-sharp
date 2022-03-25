@@ -14,7 +14,7 @@ namespace backend_learning.DTOs
 
         public int Age { get; set; }
 
-        public Job Job { get; set; }
+        public IEnumerable<string> Jobs { get; set; }
         
         public string Message { get; set; }
     }

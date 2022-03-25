@@ -13,21 +13,25 @@ using AutoMapper.QueryableExtensions;
 
 namespace backend_learning.Controllers
 {
-    public class AccountController : BaseController
+    [ApiController]
+    [Route("api/account")]
+    public class AccountController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJobRepository _jobRepository;
         private readonly IMapper _mapper;
 
 
-        public AccountController(IUserRepository userRepository, IMapper mapper)
+        public AccountController(IUserRepository userRepository, IJobRepository jobRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _jobRepository = jobRepository;
             _mapper = mapper;
         }
 
 
         [HttpPost("register")]  // Specifies that this endpoint is reachable by a POST request to the endpoint "x/api/register"
-        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
             // Checks if the email already exists
             if (await _userRepository.ContainsUserWithEmail(registerDto.Email))
@@ -42,12 +46,25 @@ namespace backend_learning.Controllers
                 Name = registerDto.Name,
                 Age = registerDto.Age,
                 Email = registerDto.Email,
-                Job = registerDto.Job,
                 SecretMessage = registerDto.Message,
                 Password = hashedPasswordAndKey.Item1,
                 PasswordSeed = hashedPasswordAndKey.Item2,
                 TimeOfCreation = DateTime.UtcNow
             };
+
+            // Find the jobs with the requested names frome the database (Jobs table) and add it to a user
+            List<Job> jobs = new List<Job>();
+            foreach (string jobName in registerDto.Jobs)
+            {
+                var job = await _jobRepository.FindJobWithName(jobName);
+                
+                if(job != null)
+                {
+                    jobs.Add(job);
+                }
+            }
+            user.Jobs = jobs;
+
 
             await _userRepository.AddUser(user);
             await _userRepository.SaveChanges();
@@ -66,13 +83,13 @@ namespace backend_learning.Controllers
 
 
         [HttpPost("login")]  // Specifies that this endpoint is reachable by a POST request to the endpoint "x/api/login"
-        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
         {
             // Get the user
             var user = await _userRepository.GetUserByEmail(loginDto.Email);
 
             // If a user with this email and password does not exist, return an error
-            if(user == null || !PasswordsEqual(user, loginDto.Password))
+            if (user == null || !PasswordsEqual(user, loginDto.Password))
                 return BadRequest("The provided email or password was wrong");
 
             return Ok(_mapper.Map<UserDto>(user));
@@ -82,7 +99,7 @@ namespace backend_learning.Controllers
         private bool PasswordsEqual(User user, string rawPassword)
         {
             var rawPasswordHashed = GetHash(rawPassword, user.PasswordSeed);
-            
+
             return user.Password.SequenceEqual(rawPasswordHashed);
         }
 

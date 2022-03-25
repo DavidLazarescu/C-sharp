@@ -22,7 +22,12 @@ namespace backend_learning.Entities.Configurations
                 fromDb => DateTime.SpecifyKind(fromDb, DateTimeKind.Utc)  // Specify that the DateTime is in the UTC format when reading it FROM the DB
             );
 
-            // This is a FluentAPI operation on the property "Email" which makes it requiered
+            // Defines a relationship (This is usually done by convention, FLUENT API is just used in non conventional cases)
+            builder.HasMany(p => p.Jobs)
+                .WithMany(p => p.User);
+
+
+            // This is a FluentAPI operation on the property "Email" which makes it requiered (foreign key not nullable)
             builder.Property(p => p.Email)
                 .IsRequired();
             

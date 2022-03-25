@@ -25,7 +25,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Libraries usually have extension methods for "IServiceCollection", here "builder.Services"
 // e.g. "builder.Services.AddControllers();". You need to add by your own ones by yourself, by using
 // e.g. "builder.Services.AddScoped<IInterface, Class>" 
-builder.Services.AddControllers();
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;    // Respects the dataformat the browser requests
+    config.ReturnHttpNotAcceptable = true;   // Returns an error (406) if the result format type is not supported (e.g. text/css), else it'd default to JSON
+}).AddXmlDataContractSerializerFormatters();     // Add XML serializer
+// You can add custom formatters as well
 
 // This is an extension method to register my own services and not clutter up the space
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -40,7 +45,7 @@ var app = builder.Build();  // After the WebApplication was built, you can now u
 // "IServiceCollection.AddApplicationServices" is the extension method I mentioned about, to register my own services
 // "WebApplication.AdditionalConfiguration" is my extension method for additional configurations
 app.AdditionalConfiguration(app.Services);
-
+app.SeedDatabase();
 
 
 // --- HTTP request pipeline ---

@@ -1,5 +1,5 @@
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/appsettings.json
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/appsettings.Development.json
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/appsettings.json
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/backend_learning
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/backend_learning.deps.json
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/backend_learning.runtimeconfig.json
@@ -9,6 +9,10 @@
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/AutoMapper.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Humanizer.dll
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.dll
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.Data.Sqlite.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -17,6 +21,7 @@
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
+/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.OpenApi.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Serilog.dll
 /home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Serilog.Extensions.Logging.dll
@@ -61,8 +66,3 @@
 /home/creapermann/Programming/C-sharp/backend_learning/obj/Debug/net6.0/ref/backend_learning.dll
 /home/creapermann/Programming/C-sharp/backend_learning/obj/Debug/net6.0/backend_learning.pdb
 /home/creapermann/Programming/C-sharp/backend_learning/obj/Debug/net6.0/backend_learning.genruntimeconfig.cache
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.dll
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.dll
-/home/creapermann/Programming/C-sharp/backend_learning/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll

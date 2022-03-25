@@ -10,6 +10,7 @@ namespace backend_learning.Data
     public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }  // This is the table of type User called "Users" in the databank, it manages all users
+        public DbSet<Job> Jobs { get; set; }  // This is the table of type User called "Jobs" in the databank
 
         // This constructor will most of the time stay the same when working with ASP.NET, you just call the base object's constructor
         public DataContext(DbContextOptions options) : base(options)

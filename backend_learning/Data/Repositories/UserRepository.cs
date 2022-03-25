@@ -36,6 +36,7 @@ namespace backend_learning.Data.Repositories
         public async Task<User> GetUserByEmail(string email)
         {
             return await _context.Users
+                                .Include(p => p.Jobs)
                                 .Where(x => x.Email == email)
                                 .SingleOrDefaultAsync();
         }
@@ -43,6 +44,7 @@ namespace backend_learning.Data.Repositories
         public async Task<User> GetUserById(int id)
         {
             return await _context.Users
+                                .Include(p => p.Jobs)
                                 .Where(x => x.UserId == id)
                                 .SingleOrDefaultAsync();
         }

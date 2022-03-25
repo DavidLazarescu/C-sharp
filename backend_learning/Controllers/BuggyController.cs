@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace backend_learning.Controllers
 {
     [Route("api/buggy")]
-    public class BuggyController : BaseController
+    public class BuggyController : ControllerBase
     {
         [HttpGet]
         public void ThrowException()
