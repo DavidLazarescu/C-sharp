@@ -1,0 +1,138 @@
+2022-04-09T09:58:12.8188621+02:00  [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T09:58:13.0882923+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Jobs\" AS \"j\")" (0723d8ff)
+2022-04-09T09:58:13.3410105+02:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-04-09T09:58:13.3411019+02:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-04-09T09:58:13.3475783+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-04-09T09:58:13.3486133+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-04-09T09:58:13.3487128+02:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-04-09T09:58:17.3878081+02:00 0HMGPVQQDUK8K:00000002 [INF] Request starting HTTP/1.1 POST https://localhost:7213/api/account/login application/json 70 (ca22a1cb)
+2022-04-09T09:58:17.4208007+02:00 0HMGPVQQDUK8K:00000002 [INF] Executing endpoint '"backend_learning.Controllers.AccountController.Login (backend_learning)"' (500cc934)
+2022-04-09T09:58:17.4458753+02:00 0HMGPVQQDUK8K:00000002 [INF] Route matched with "{action = \"Login\", controller = \"Account\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[backend_learning.DTOs.UserDto]] Login(backend_learning.LoginDto)" on controller "backend_learning.Controllers.AccountController" ("backend_learning"). (122b2fdf)
+2022-04-09T09:58:17.5728214+02:00 0HMGPVQQDUK8K:00000002 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T09:58:17.7566196+02:00 0HMGPVQQDUK8K:00000002 [INF] Executed DbCommand ("5"ms) [Parameters=["@__email_0='?' (Size = 18)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"t\".\"UserId\", \"t\".\"Age\", \"t\".\"Email\", \"t\".\"Name\", \"t\".\"Password\", \"t\".\"PasswordSeed\", \"t\".\"SecretMessage\", \"t\".\"TimeOfCreation\", \"t0\".\"JobsJobId\", \"t0\".\"UserId\", \"t0\".\"JobId\", \"t0\".\"Description\", \"t0\".\"Location\", \"t0\".\"Name\", \"t0\".\"YearlySalary\"
+FROM (
+    SELECT \"u\".\"UserId\", \"u\".\"Age\", \"u\".\"Email\", \"u\".\"Name\", \"u\".\"Password\", \"u\".\"PasswordSeed\", \"u\".\"SecretMessage\", \"u\".\"TimeOfCreation\"
+    FROM \"Users\" AS \"u\"
+    WHERE \"u\".\"Email\" = @__email_0
+    LIMIT 2
+) AS \"t\"
+LEFT JOIN (
+    SELECT \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\", \"j0\".\"Description\", \"j0\".\"Location\", \"j0\".\"Name\", \"j0\".\"YearlySalary\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t0\" ON \"t\".\"UserId\" = \"t0\".\"UserId\"
+ORDER BY \"t\".\"UserId\", \"t0\".\"JobsJobId\", \"t0\".\"UserId\"" (0723d8ff)
+2022-04-09T09:58:17.8675282+02:00 0HMGPVQQDUK8K:00000002 [INF] Executing "OkObjectResult", writing value of type '"backend_learning.DTOs.UserDto"'. (605b4265)
+2022-04-09T09:58:17.8847271+02:00 0HMGPVQQDUK8K:00000002 [INF] Executed action "backend_learning.Controllers.AccountController.Login (backend_learning)" in 431.8271ms (afa2e885)
+2022-04-09T09:58:17.8848447+02:00 0HMGPVQQDUK8K:00000002 [INF] Executed endpoint '"backend_learning.Controllers.AccountController.Login (backend_learning)"' (99874f2b)
+2022-04-09T09:58:17.8905569+02:00 0HMGPVQQDUK8K:00000002 [INF] Request finished HTTP/1.1 POST https://localhost:7213/api/account/login application/json 70 - 200 - application/json;+charset=utf-8 505.5859ms (791a596a)
+2022-04-09T09:58:23.7400089+02:00  [INF] Application is shutting down... (90f52c38)
+2022-04-09T09:59:16.4622441+02:00  [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T09:59:16.6954195+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT EXISTS (
+    SELECT 1
+    FROM \"Jobs\" AS \"j\")" (0723d8ff)
+2022-04-09T09:59:16.9103932+02:00  [INF] Now listening on: "https://localhost:7213" (d826f4b8)
+2022-04-09T09:59:16.9104450+02:00  [INF] Now listening on: "http://localhost:5261" (d826f4b8)
+2022-04-09T09:59:16.9169254+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-04-09T09:59:16.9178757+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-04-09T09:59:16.9179243+02:00  [INF] Content root path: "/home/creapermann/Programming/C-sharp/backend_learning/" (b5d60022)
+2022-04-09T09:59:46.9777292+02:00 0HMGPVRL48EHB:0000000F [INF] Request starting HTTP/2 GET https://localhost:7213/api/account/login - - (ca22a1cb)
+2022-04-09T09:59:47.0100918+02:00 0HMGPVRL48EHB:0000000F [INF] Executing endpoint '"405 HTTP Method Not Supported"' (500cc934)
+2022-04-09T09:59:47.0102788+02:00 0HMGPVRL48EHB:0000000F [INF] Executed endpoint '"405 HTTP Method Not Supported"' (99874f2b)
+2022-04-09T09:59:47.0144426+02:00 0HMGPVRL48EHB:0000000F [INF] Request finished HTTP/2 GET https://localhost:7213/api/account/login - - - 405 0 - 39.7206ms (791a596a)
+2022-04-09T09:59:47.1327961+02:00 0HMGPVRL48EHB:00000011 [INF] Request starting HTTP/2 GET https://localhost:7213/favicon.ico - - (ca22a1cb)
+2022-04-09T09:59:47.1334182+02:00 0HMGPVRL48EHB:00000011 [INF] Request finished HTTP/2 GET https://localhost:7213/favicon.ico - - - 404 0 - 0.6230ms (791a596a)
+2022-04-09T10:00:25.3519216+02:00 0HMGPVRL48EHB:00000013 [INF] Request starting HTTP/2 GET https://localhost:7213/api/users - - (ca22a1cb)
+2022-04-09T10:00:25.3532575+02:00 0HMGPVRL48EHB:00000013 [INF] Executing endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (500cc934)
+2022-04-09T10:00:25.3693508+02:00 0HMGPVRL48EHB:00000013 [INF] Route matched with "{action = \"GetAllUsers\", controller = \"User\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[backend_learning.DTOs.UserDto]]] GetAllUsers()" on controller "backend_learning.Controllers.UserController" ("backend_learning"). (122b2fdf)
+2022-04-09T10:00:25.4778598+02:00 0HMGPVRL48EHB:00000013 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T10:00:25.6434233+02:00 0HMGPVRL48EHB:00000013 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"Name\", \"u\".\"Email\", \"u\".\"Age\", \"u\".\"UserId\", \"t\".\"Name\", \"t\".\"JobsJobId\", \"t\".\"UserId\", \"t\".\"JobId\"
+FROM \"Users\" AS \"u\"
+LEFT JOIN (
+    SELECT \"j0\".\"Name\", \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t\" ON \"u\".\"UserId\" = \"t\".\"UserId\"
+ORDER BY \"u\".\"UserId\", \"t\".\"JobsJobId\", \"t\".\"UserId\"" (0723d8ff)
+2022-04-09T10:00:25.6680928+02:00 0HMGPVRL48EHB:00000013 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[backend_learning.DTOs.UserDto, backend_learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2022-04-09T10:00:25.6874437+02:00 0HMGPVRL48EHB:00000013 [INF] Executed action "backend_learning.Controllers.UserController.GetAllUsers (backend_learning)" in 310.9128ms (afa2e885)
+2022-04-09T10:00:25.6876106+02:00 0HMGPVRL48EHB:00000013 [INF] Executed endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (99874f2b)
+2022-04-09T10:00:25.6919494+02:00 0HMGPVRL48EHB:00000013 [INF] Request finished HTTP/2 GET https://localhost:7213/api/users - - - 200 762 application/xml;+charset=utf-8 339.9795ms (791a596a)
+2022-04-09T10:01:13.0631631+02:00 0HMGPVRL48EHB:00000015 [INF] Request starting HTTP/2 GET https://localhost:7213/api/users - - (ca22a1cb)
+2022-04-09T10:01:13.0636272+02:00 0HMGPVRL48EHB:00000015 [INF] Executing endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (500cc934)
+2022-04-09T10:01:13.0641010+02:00 0HMGPVRL48EHB:00000015 [INF] Route matched with "{action = \"GetAllUsers\", controller = \"User\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[backend_learning.DTOs.UserDto]]] GetAllUsers()" on controller "backend_learning.Controllers.UserController" ("backend_learning"). (122b2fdf)
+2022-04-09T10:01:13.1141140+02:00 0HMGPVRL48EHB:00000015 [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T10:01:13.1178850+02:00 0HMGPVRL48EHB:00000015 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"Name\", \"u\".\"Email\", \"u\".\"Age\", \"u\".\"UserId\", \"t\".\"Name\", \"t\".\"JobsJobId\", \"t\".\"UserId\", \"t\".\"JobId\"
+FROM \"Users\" AS \"u\"
+LEFT JOIN (
+    SELECT \"j0\".\"Name\", \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t\" ON \"u\".\"UserId\" = \"t\".\"UserId\"
+ORDER BY \"u\".\"UserId\", \"t\".\"JobsJobId\", \"t\".\"UserId\"" (0723d8ff)
+2022-04-09T10:01:13.1182915+02:00 0HMGPVRL48EHB:00000015 [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[backend_learning.DTOs.UserDto, backend_learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2022-04-09T10:01:13.1186765+02:00 0HMGPVRL48EHB:00000015 [INF] Executed action "backend_learning.Controllers.UserController.GetAllUsers (backend_learning)" in 54.495ms (afa2e885)
+2022-04-09T10:01:13.1187183+02:00 0HMGPVRL48EHB:00000015 [INF] Executed endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (99874f2b)
+2022-04-09T10:01:13.1188642+02:00 0HMGPVRL48EHB:00000015 [INF] Request finished HTTP/2 GET https://localhost:7213/api/users - - - 200 762 application/xml;+charset=utf-8 55.8685ms (791a596a)
+2022-04-09T10:01:25.0301744+02:00 0HMGPVRL48EHB:00000017 [INF] Request starting HTTP/2 GET https://localhost:7213/api/user/gigiulia@gmail.com - - (ca22a1cb)
+2022-04-09T10:01:25.0304598+02:00 0HMGPVRL48EHB:00000017 [INF] Request finished HTTP/2 GET https://localhost:7213/api/user/gigiulia@gmail.com - - - 404 0 - 0.3081ms (791a596a)
+2022-04-09T10:01:32.3565458+02:00 0HMGPVRL48EHB:00000019 [INF] Request starting HTTP/2 GET https://localhost:7213/api/user/gigiulia@gmail.com - - (ca22a1cb)
+2022-04-09T10:01:32.3569370+02:00 0HMGPVRL48EHB:00000019 [INF] Request finished HTTP/2 GET https://localhost:7213/api/user/gigiulia@gmail.com - - - 404 0 - 0.3817ms (791a596a)
+2022-04-09T10:01:47.2804324+02:00 0HMGPVRL48EHB:0000001B [INF] Request starting HTTP/2 GET https://localhost:7213/api/users - - (ca22a1cb)
+2022-04-09T10:01:47.2806042+02:00 0HMGPVRL48EHB:0000001B [INF] Executing endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (500cc934)
+2022-04-09T10:01:47.2807312+02:00 0HMGPVRL48EHB:0000001B [INF] Route matched with "{action = \"GetAllUsers\", controller = \"User\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[backend_learning.DTOs.UserDto]]] GetAllUsers()" on controller "backend_learning.Controllers.UserController" ("backend_learning"). (122b2fdf)
+2022-04-09T10:01:47.2838860+02:00 0HMGPVRL48EHB:0000001B [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T10:01:47.2846275+02:00 0HMGPVRL48EHB:0000001B [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"Name\", \"u\".\"Email\", \"u\".\"Age\", \"u\".\"UserId\", \"t\".\"Name\", \"t\".\"JobsJobId\", \"t\".\"UserId\", \"t\".\"JobId\"
+FROM \"Users\" AS \"u\"
+LEFT JOIN (
+    SELECT \"j0\".\"Name\", \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t\" ON \"u\".\"UserId\" = \"t\".\"UserId\"
+ORDER BY \"u\".\"UserId\", \"t\".\"JobsJobId\", \"t\".\"UserId\"" (0723d8ff)
+2022-04-09T10:01:47.2849680+02:00 0HMGPVRL48EHB:0000001B [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[backend_learning.DTOs.UserDto, backend_learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2022-04-09T10:01:47.2853810+02:00 0HMGPVRL48EHB:0000001B [INF] Executed action "backend_learning.Controllers.UserController.GetAllUsers (backend_learning)" in 4.5837ms (afa2e885)
+2022-04-09T10:01:47.2854439+02:00 0HMGPVRL48EHB:0000001B [INF] Executed endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (99874f2b)
+2022-04-09T10:01:47.2855885+02:00 0HMGPVRL48EHB:0000001B [INF] Request finished HTTP/2 GET https://localhost:7213/api/users - - - 200 762 application/xml;+charset=utf-8 5.1691ms (791a596a)
+2022-04-09T10:01:52.4396010+02:00 0HMGPVRL48EHB:0000001D [INF] Request starting HTTP/2 GET https://localhost:7213/api/users - - (ca22a1cb)
+2022-04-09T10:01:52.4397638+02:00 0HMGPVRL48EHB:0000001D [INF] Executing endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (500cc934)
+2022-04-09T10:01:52.4398775+02:00 0HMGPVRL48EHB:0000001D [INF] Route matched with "{action = \"GetAllUsers\", controller = \"User\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[backend_learning.DTOs.UserDto]]] GetAllUsers()" on controller "backend_learning.Controllers.UserController" ("backend_learning"). (122b2fdf)
+2022-04-09T10:01:52.4404220+02:00 0HMGPVRL48EHB:0000001D [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T10:01:52.4408906+02:00 0HMGPVRL48EHB:0000001D [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"Name\", \"u\".\"Email\", \"u\".\"Age\", \"u\".\"UserId\", \"t\".\"Name\", \"t\".\"JobsJobId\", \"t\".\"UserId\", \"t\".\"JobId\"
+FROM \"Users\" AS \"u\"
+LEFT JOIN (
+    SELECT \"j0\".\"Name\", \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t\" ON \"u\".\"UserId\" = \"t\".\"UserId\"
+ORDER BY \"u\".\"UserId\", \"t\".\"JobsJobId\", \"t\".\"UserId\"" (0723d8ff)
+2022-04-09T10:01:52.4411347+02:00 0HMGPVRL48EHB:0000001D [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[backend_learning.DTOs.UserDto, backend_learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2022-04-09T10:01:52.4413796+02:00 0HMGPVRL48EHB:0000001D [INF] Executed action "backend_learning.Controllers.UserController.GetAllUsers (backend_learning)" in 1.4562ms (afa2e885)
+2022-04-09T10:01:52.4414203+02:00 0HMGPVRL48EHB:0000001D [INF] Executed endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (99874f2b)
+2022-04-09T10:01:52.4415310+02:00 0HMGPVRL48EHB:0000001D [INF] Request finished HTTP/2 GET https://localhost:7213/api/users - - - 200 762 application/xml;+charset=utf-8 1.9554ms (791a596a)
+2022-04-09T10:02:14.6492131+02:00 0HMGPVRL48EHB:0000001F [INF] Request starting HTTP/2 GET https://localhost:7213/api/users - - (ca22a1cb)
+2022-04-09T10:02:14.6493610+02:00 0HMGPVRL48EHB:0000001F [INF] Executing endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (500cc934)
+2022-04-09T10:02:14.6494710+02:00 0HMGPVRL48EHB:0000001F [INF] Route matched with "{action = \"GetAllUsers\", controller = \"User\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[backend_learning.DTOs.UserDto]]] GetAllUsers()" on controller "backend_learning.Controllers.UserController" ("backend_learning"). (122b2fdf)
+2022-04-09T10:02:14.6499108+02:00 0HMGPVRL48EHB:0000001F [INF] Entity Framework Core "6.0.3" initialized '"DataContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite":"6.0.3"' with options: "None" (d2805559)
+2022-04-09T10:02:14.6503804+02:00 0HMGPVRL48EHB:0000001F [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u\".\"Name\", \"u\".\"Email\", \"u\".\"Age\", \"u\".\"UserId\", \"t\".\"Name\", \"t\".\"JobsJobId\", \"t\".\"UserId\", \"t\".\"JobId\"
+FROM \"Users\" AS \"u\"
+LEFT JOIN (
+    SELECT \"j0\".\"Name\", \"j\".\"JobsJobId\", \"j\".\"UserId\", \"j0\".\"JobId\"
+    FROM \"JobUser\" AS \"j\"
+    INNER JOIN \"Jobs\" AS \"j0\" ON \"j\".\"JobsJobId\" = \"j0\".\"JobId\"
+) AS \"t\" ON \"u\".\"UserId\" = \"t\".\"UserId\"
+ORDER BY \"u\".\"UserId\", \"t\".\"JobsJobId\", \"t\".\"UserId\"" (0723d8ff)
+2022-04-09T10:02:14.6506491+02:00 0HMGPVRL48EHB:0000001F [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[backend_learning.DTOs.UserDto, backend_learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2022-04-09T10:02:14.6509527+02:00 0HMGPVRL48EHB:0000001F [INF] Executed action "backend_learning.Controllers.UserController.GetAllUsers (backend_learning)" in 1.4434ms (afa2e885)
+2022-04-09T10:02:14.6509881+02:00 0HMGPVRL48EHB:0000001F [INF] Executed endpoint '"backend_learning.Controllers.UserController.GetAllUsers (backend_learning)"' (99874f2b)
+2022-04-09T10:02:14.6510966+02:00 0HMGPVRL48EHB:0000001F [INF] Request finished HTTP/2 GET https://localhost:7213/api/users - - - 200 762 application/xml;+charset=utf-8 1.9316ms (791a596a)

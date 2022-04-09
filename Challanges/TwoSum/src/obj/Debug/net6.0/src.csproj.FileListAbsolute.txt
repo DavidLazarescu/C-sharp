@@ -1,0 +1,12 @@
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/bin/Debug/net6.0/src.deps.json
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/bin/Debug/net6.0/src.dll
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/bin/Debug/net6.0/ref/src.dll
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/bin/Debug/net6.0/src.pdb
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.csproj.AssemblyReference.cache
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.GeneratedMSBuildEditorConfig.editorconfig
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.AssemblyInfoInputs.cache
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.AssemblyInfo.cs
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.csproj.CoreCompileInputs.cache
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.dll
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/ref/src.dll
+/home/creapermann/Programming/C-sharp/Challanges/TwoSum/src/obj/Debug/net6.0/src.pdb
