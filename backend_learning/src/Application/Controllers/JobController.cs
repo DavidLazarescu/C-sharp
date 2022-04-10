@@ -20,13 +20,13 @@ namespace backend_learning.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JobOutputDto>>> GetAllJobs()
         {
-            return Ok(await _jobRepository.GetAllJobDtos());
+            return Ok(await _jobRepository.GetAllJobDtos(trackChanges: false));
         }
 
         [HttpGet("{name}")]
         public async Task<ActionResult<IEnumerable<JobOutputDto>>> GetJob(string name)
         {
-            return Ok(await _jobRepository.FindJobWithName(name));
+            return Ok(await _jobRepository.GetJobWithName(name, trackChanges: false));
         }
 
         [HttpPost]

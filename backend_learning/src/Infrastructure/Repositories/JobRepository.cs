@@ -20,9 +20,25 @@ namespace backend_learning.Infrastructure.Repositories
         }
 
 
-        public async Task<Job> FindJobWithName(string name) => await _context.Jobs.SingleOrDefaultAsync(p => p.Name == name);
+        public async Task<Job> GetJobWithName(string name, bool trackChanges) 
+        {
+            if(trackChanges)
+                return await _context.Jobs.SingleOrDefaultAsync(p => p.Name == name);
+            else
+                return await _context.Jobs.AsNoTracking()
+                                          .SingleOrDefaultAsync(p => p.Name == name);
+        }
 
-        public async Task<IEnumerable<JobOutputDto>> GetAllJobDtos() => await _context.Jobs.ProjectTo<JobOutputDto>(_mapper.ConfigurationProvider).ToListAsync();
+        public async Task<IEnumerable<JobOutputDto>> GetAllJobDtos(bool trackChanges) 
+        {
+            if(trackChanges)
+                return await _context.Jobs.ProjectTo<JobOutputDto>(_mapper.ConfigurationProvider)
+                                          .ToListAsync();
+            else
+                return await _context.Jobs.AsNoTracking()
+                                          .ProjectTo<JobOutputDto>(_mapper.ConfigurationProvider)
+                                          .ToListAsync();
+        }
 
         public async Task<JobOutputDto> InsertIfDoesNotExist(JobInputDto jobInputDto)
         {

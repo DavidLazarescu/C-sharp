@@ -10,11 +10,11 @@ namespace backend_learning.Infrastructure.Interfaces
     {
         public Task<bool> SaveChanges();
         public Task AddUser(User user);
-        public Task<User> GetUserByEmail(string email);
-        public Task<User> GetUserById(int id);
-        public Task<UserDto> GetUserDtoByEmail(string email);
-        public Task<UserDto> GetUserDtoById(int id);
-        public Task<bool> ContainsUserWithEmail(string email);
-        public Task<IEnumerable<UserDto>> GetAllUserDtos();
+        public Task<User> GetUserByEmail(string email, bool trackChanges);
+        public Task<User> GetUserById(int id, bool trackChanges);
+        public Task<UserDto> GetUserDtoByEmail(string email, bool trackChanges);
+        public Task<UserDto> GetUserDtoById(int id, bool trackChanges);
+        public Task<bool> UserAlreadyExists(string email);
+        public Task<IEnumerable<UserDto>> GetAllUserDtos(bool trackChanges);
     }
 }

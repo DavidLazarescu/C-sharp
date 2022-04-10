@@ -29,7 +29,7 @@ namespace backend_learning.Controllers
         public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
             // Checks if the email already exists
-            if (await _userRepository.ContainsUserWithEmail(registerDto.Email))
+            if (await _userRepository.UserAlreadyExists(registerDto.Email))
                 return BadRequest("A user with this email already exists");
 
             // hash the password for input password get the password and its hashing key back
@@ -51,13 +51,12 @@ namespace backend_learning.Controllers
             List<Job> jobs = new List<Job>();
             foreach (string jobName in registerDto.Jobs)
             {
-                var job = await _jobRepository.FindJobWithName(jobName);
+                var job = await _jobRepository.GetJobWithName(jobName, trackChanges: true);
                 
                 if(job != null)
-                {
                     jobs.Add(job);
-                }
             }
+
             user.Jobs = jobs;
 
 
@@ -81,7 +80,7 @@ namespace backend_learning.Controllers
         public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
         {
             // Get the user
-            var user = await _userRepository.GetUserByEmail(loginDto.Email);
+            var user = await _userRepository.GetUserByEmail(loginDto.Email, trackChanges: false);
 
             // If a user with this email and password does not exist, return an error
             if (user == null || !PasswordsEqual(user, loginDto.Password))
