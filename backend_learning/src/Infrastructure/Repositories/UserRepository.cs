@@ -21,7 +21,7 @@ namespace backend_learning.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public async Task<bool> ContainsUserWithEmail(string email)
+        public async Task<bool> UserAlreadyExists(string email)
         {
             return await _context.Users.AnyAsync(x => x.Email == email);
         }

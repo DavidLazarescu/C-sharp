@@ -4,26 +4,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace backend_learning.Application.Extensions
+namespace backend_learning.Application.Configuration
 {
     // Extension method for things which should happen during startup
-    public static class StartupExtensions
+    public static class StartupConfiguration
     {
-        public static WebApplication AdditionalConfiguration(this WebApplication app, IServiceProvider services)
+        public static void AdditionalConfiguration(IServiceProvider services)
         {
             var loggerFactory = services.GetService<ILoggerFactory>();
             loggerFactory.AddFile(Directory.GetCurrentDirectory() + "/Data/Logs/");  // Configure that the logger should log to the specified file
-
-            return app;
         }
 
-        public static WebApplication SeedDatabase(this WebApplication app)
+        public async static Task SeedDatabaseAsync(DataContext context)
         {
-            var scope = app.Services.CreateScope();
-            var services = scope.ServiceProvider;
-
-            var context = services.GetService<DataContext>();
-
             if(!context.Jobs.Any())
             {
                 context.Jobs.Add(new Job
@@ -50,11 +43,8 @@ namespace backend_learning.Application.Extensions
                     YearlySalary = 60000
                 });
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
-            
-
-            return app;
         }
     }
 }

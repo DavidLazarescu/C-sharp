@@ -9,6 +9,8 @@ using backend_learning.Application.Extensions;
 using backend_learning.Application.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using backend_learning.Infrastructure;
+using backend_learning.Application.Configuration;
 
 
 // The builder of the web application
@@ -31,9 +33,13 @@ var app = builder.Build();  // After the WebApplication was built, you can now u
 
 
 // Startup code
-app.AdditionalConfiguration(app.Services);
-app.SeedDatabase();
-
+using(var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    
+    StartupConfiguration.AdditionalConfiguration(app.Services);
+    await StartupConfiguration.SeedDatabaseAsync(services.GetRequiredService<DataContext>());
+}
 
 // HTTP request pipeline
 // You can add your own middle ware here, to create one more step, the app must run through at each HTTP request,
