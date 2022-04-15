@@ -22,7 +22,7 @@ namespace backend_learning.Controllers
         [HttpGet]  // the "HttpGet" attribute specifies that the method is reacting to a get request
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
         {
-            return Ok(await _userRepository.GetAllUserDtos(trackChanges: false));  // Returning all users
+            return Ok(await _userRepository.GetAllUserDtosAsync(trackChanges: false));  // Returning all users
         }
 
         // This is also a GET method but this time it is connected to the endpoint "api/users/email", also by putting "{email}"
@@ -31,7 +31,7 @@ namespace backend_learning.Controllers
         [HttpGet("{email}")]
         public async Task<ActionResult<UserDto>> GetUser(string email)
         {
-            return Ok(await _userRepository.GetUserDtoByEmail(email, trackChanges: false));  // Returning user with the email
+            return Ok(await _userRepository.GetUserDtoByEmailAsync(email, trackChanges: false));  // Returning user with the email
         }
     }
 }

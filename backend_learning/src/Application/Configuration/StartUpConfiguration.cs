@@ -15,7 +15,7 @@ namespace backend_learning.Application.Configuration
             loggerFactory.AddFile(Directory.GetCurrentDirectory() + "/Data/Logs/");  // Configure that the logger should log to the specified file
         }
 
-        public async static Task SeedDatabaseAsync(DataContext context)
+        public async static Task SeedDatabaseWithJobsAsync(DataContext context)
         {
             if(!context.Jobs.Any())
             {

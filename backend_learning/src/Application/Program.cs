@@ -38,7 +38,7 @@ using(var serviceScope = app.Services.CreateScope())
     var services = serviceScope.ServiceProvider;
     
     StartupConfiguration.AdditionalConfiguration(app.Services);
-    await StartupConfiguration.SeedDatabaseAsync(services.GetRequiredService<DataContext>());
+    await StartupConfiguration.SeedDatabaseWithJobsAsync(services.GetRequiredService<DataContext>());
 }
 
 // HTTP request pipeline

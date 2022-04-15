@@ -8,13 +8,13 @@ namespace backend_learning.Infrastructure.Interfaces
     // calling methods which do what you want 
     public interface IUserRepository
     {
-        public Task<bool> SaveChanges();
-        public Task AddUser(User user);
-        public Task<User> GetUserByEmail(string email, bool trackChanges);
-        public Task<User> GetUserById(int id, bool trackChanges);
-        public Task<UserDto> GetUserDtoByEmail(string email, bool trackChanges);
-        public Task<UserDto> GetUserDtoById(int id, bool trackChanges);
-        public Task<bool> UserAlreadyExists(string email);
-        public Task<IEnumerable<UserDto>> GetAllUserDtos(bool trackChanges);
+        public Task<bool> SaveChangesAsync();
+        public Task AddUserAsync(User user);
+        public Task<User> GetUserByEmailAsync(string email, bool trackChanges);
+        public Task<User> GetUserByIdAsync(int id, bool trackChanges);
+        public Task<UserDto> GetUserDtoByEmailAsync(string email, bool trackChanges);
+        public Task<UserDto> GetUserDtoByIdAsync(int id, bool trackChanges);
+        public Task<bool> UserAlreadyExistsAsync(string email);
+        public Task<IEnumerable<UserDto>> GetAllUserDtosAsync(bool trackChanges);
     }
 }

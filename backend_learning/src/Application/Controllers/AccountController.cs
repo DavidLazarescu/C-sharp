@@ -29,7 +29,7 @@ namespace backend_learning.Controllers
         public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
             // Checks if the email already exists
-            if (await _userRepository.UserAlreadyExists(registerDto.Email))
+            if (await _userRepository.UserAlreadyExistsAsync(registerDto.Email))
                 return BadRequest("A user with this email already exists");
 
             // hash the password for input password get the password and its hashing key back
@@ -60,8 +60,8 @@ namespace backend_learning.Controllers
             user.Jobs = jobs;
 
 
-            await _userRepository.AddUser(user);
-            await _userRepository.SaveChanges();
+            await _userRepository.AddUserAsync(user);
+            await _userRepository.SaveChangesAsync();
 
             return Ok(_mapper.Map<UserDto>(user));
         }
@@ -80,7 +80,7 @@ namespace backend_learning.Controllers
         public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
         {
             // Get the user
-            var user = await _userRepository.GetUserByEmail(loginDto.Email, trackChanges: false);
+            var user = await _userRepository.GetUserByEmailAsync(loginDto.Email, trackChanges: false);
 
             // If a user with this email and password does not exist, return an error
             if (user == null || !PasswordsEqual(user, loginDto.Password))

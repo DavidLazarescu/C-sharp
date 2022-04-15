@@ -21,12 +21,12 @@ namespace backend_learning.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public async Task<bool> UserAlreadyExists(string email)
+        public async Task<bool> UserAlreadyExistsAsync(string email)
         {
             return await _context.Users.AnyAsync(x => x.Email == email);
         }
 
-        public async Task<IEnumerable<UserDto>> GetAllUserDtos(bool trackChanges)
+        public async Task<IEnumerable<UserDto>> GetAllUserDtosAsync(bool trackChanges)
         {
             return await (trackChanges ?
                 _context.Users
@@ -39,7 +39,7 @@ namespace backend_learning.Infrastructure.Repositories
                         .ToListAsync());
         }
 
-        public async Task<User> GetUserByEmail(string email, bool trackChanges)
+        public async Task<User> GetUserByEmailAsync(string email, bool trackChanges)
         {
             return await (trackChanges ?
                 _context.Users
@@ -54,7 +54,7 @@ namespace backend_learning.Infrastructure.Repositories
                         .SingleOrDefaultAsync());
         }
 
-        public async Task<User> GetUserById(int id, bool trackChanges)
+        public async Task<User> GetUserByIdAsync(int id, bool trackChanges)
         {
             return await (trackChanges ?
                 _context.Users
@@ -69,7 +69,7 @@ namespace backend_learning.Infrastructure.Repositories
                         .SingleOrDefaultAsync());
         }
 
-        public async Task<UserDto> GetUserDtoByEmail(string email, bool trackChanges)
+        public async Task<UserDto> GetUserDtoByEmailAsync(string email, bool trackChanges)
         {
             return await (trackChanges ?
                 _context.Users
@@ -84,7 +84,7 @@ namespace backend_learning.Infrastructure.Repositories
                         .SingleOrDefaultAsync());
         }
 
-        public async Task<UserDto> GetUserDtoById(int id, bool trackChanges)
+        public async Task<UserDto> GetUserDtoByIdAsync(int id, bool trackChanges)
         {
             return await (trackChanges ?
                 _context.Users
@@ -99,12 +99,12 @@ namespace backend_learning.Infrastructure.Repositories
                         .SingleOrDefaultAsync());
         }
 
-        public async Task AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
             await _context.AddAsync(user);
         }
 
-        public async Task<bool> SaveChanges()
+        public async Task<bool> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
