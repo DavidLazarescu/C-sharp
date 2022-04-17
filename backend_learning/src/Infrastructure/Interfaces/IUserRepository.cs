@@ -16,5 +16,6 @@ namespace backend_learning.Infrastructure.Interfaces
         public Task<UserDto> GetUserDtoByIdAsync(int id, bool trackChanges);
         public Task<bool> UserAlreadyExistsAsync(string email);
         public Task<IEnumerable<UserDto>> GetAllUserDtosAsync(bool trackChanges);
+        public void Delete(User user);
     }
 }

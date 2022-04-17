@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using Microsoft.Extensions.Logging;
 using backend_learning.Infrastructure.DTOs;
 using backend_learning.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using backend_learning.Domain.Entities;
+
 
 namespace backend_learning.Controllers
 {
@@ -9,11 +13,15 @@ namespace backend_learning.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly ILogger _logger;
+        private readonly IMapper _mapper;
 
 
-        public UserController(IUserRepository userRepository)  // Getting "userRepository" by Dependency Injection
+        public UserController(IUserRepository userRepository, ILogger<UserController> logger, IMapper mapper)  // Getting "userRepository" by Dependency Injection
         {
             _userRepository = userRepository;
+            _logger = logger;
+            _mapper = mapper;
         }
 
 
@@ -32,6 +40,24 @@ namespace backend_learning.Controllers
         public async Task<ActionResult<UserDto>> GetUser(string email)
         {
             return Ok(await _userRepository.GetUserDtoByEmailAsync(email, trackChanges: false));  // Returning user with the email
+        }
+
+
+        [HttpDelete("delete/{email}")]
+        public async Task<ActionResult<UserDto>> DeleteUser(string email)
+        {
+            User user = await _userRepository.GetUserByEmailAsync(email, trackChanges: true);
+            if(user == null)
+            {
+                _logger.LogInformation("User with email: " + email + " does not exist");
+                return BadRequest("A user with this email does not exist");
+            }
+
+            _userRepository.Delete(user);
+            await _userRepository.SaveChangesAsync();
+
+            var userResponseDto = _mapper.Map<UserDto>(user);
+            return Ok(userResponseDto);
         }
     }
 }

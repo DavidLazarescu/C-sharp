@@ -24,7 +24,7 @@ namespace backend_learning.Controllers
         }
 
         [HttpGet("{name}")]
-        public async Task<ActionResult<IEnumerable<JobOutputDto>>> GetJob(string name)
+        public async Task<ActionResult<JobOutputDto>> GetJob(string name)
         {
             return Ok(await _jobRepository.GetJobWithName(name, trackChanges: false));
         }

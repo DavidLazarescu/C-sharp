@@ -108,5 +108,10 @@ namespace backend_learning.Infrastructure.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public void Delete(User user)
+        {
+            _context.Users.Remove(user);
+        }
     }
 }
