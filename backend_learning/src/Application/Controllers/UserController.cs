@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using backend_learning.Infrastructure.DTOs;
 using backend_learning.Infrastructure.Interfaces;
 using backend_learning.Domain.Entities;
+using Microsoft.AspNetCore.JsonPatch;
 
 
 namespace backend_learning.Controllers
@@ -58,6 +59,32 @@ namespace backend_learning.Controllers
 
             var userResponseDto = _mapper.Map<UserDto>(user);
             return Ok(userResponseDto);
+        }
+
+        [HttpPatch("{email}")]
+        public async Task<ActionResult> PartiallyUpdateUser(string email, [FromBody] JsonPatchDocument<UserForUpdateDto> patchDoc)
+        {
+            if(patchDoc == null)
+            {
+                _logger.LogError("Partial update failed, invalid request");
+                return BadRequest("Invalid request");
+            }
+
+            User user = await _userRepository.GetUserByEmailAsync(email, trackChanges: true);
+
+            if(user == null)
+            {
+                _logger.LogInformation("User with email: " + email + " does not exist");
+                return BadRequest("A user with this email does not exist");
+            }
+
+            UserForUpdateDto userForUpdate = _mapper.Map<UserForUpdateDto>(user);
+            patchDoc.ApplyTo(userForUpdate);
+            _mapper.Map(userForUpdate, user);
+
+            await _userRepository.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -13,6 +13,8 @@ namespace backend_learning.Helpers.AutoMapper
             // Create a mapping from "User" to "UserDto"
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.Jobs, temp => temp.MapFrom(src => src.Jobs.Select(p => p.Name)));  // Put only the names into "UserDto"'s "Jobs" property
+        
+            CreateMap<User, UserForUpdateDto>().ReverseMap();
         }
     }
 }

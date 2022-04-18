@@ -22,7 +22,8 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;    // Respects the dataformat the browser requests
     config.ReturnHttpNotAcceptable = true;   // Returns an error (406) if the result format type is not supported (e.g. text/css), else it'd default to JSON
-}).AddXmlDataContractSerializerFormatters();     // Add XML serializer
+}).AddNewtonsoftJson()
+  .AddXmlDataContractSerializerFormatters();     // Add XML serializer
 // You can add custom formatters as well
 
 // This is an extension method to register my own services and not clutter up the space
