@@ -1,4 +1,4 @@
-namespace backend_learning.Infrastructure.DTOs;
+namespace backend_learning.Infrastructure.DTOs.User;
 
 public class UserForUpdateDto
 {

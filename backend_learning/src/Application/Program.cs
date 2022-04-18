@@ -29,7 +29,6 @@ builder.Services.AddControllers(config =>
 // This is an extension method to register my own services and not clutter up the space
 builder.Services.AddApplicationServices(builder.Configuration);
 
-
 var app = builder.Build();  // After the WebApplication was built, you can now use all the services
 
 
@@ -41,6 +40,7 @@ using(var serviceScope = app.Services.CreateScope())
     StartupConfiguration.AdditionalConfiguration(app.Services);
     await StartupConfiguration.SeedDatabaseWithJobsAsync(services.GetRequiredService<DataContext>());
 }
+
 
 // HTTP request pipeline
 // You can add your own middle ware here, to create one more step, the app must run through at each HTTP request,
