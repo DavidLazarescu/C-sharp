@@ -7,7 +7,7 @@ public class User
 {
     public int UserId { get; set; }
 
-    [Required]  // This is a Data annotation, it does some validation on the data, here it says that the Name cant be null
+    [Required]
     public string Name { get; set; }
 
     [Required]
@@ -16,7 +16,6 @@ public class User
     [Required]
     public DateTime TimeOfCreation { get; set; }
 
-    [Required]
     public int Age { get; set; }
 
     [Required]

@@ -79,9 +79,24 @@ public class UserController : ControllerBase
             return BadRequest("A user with this email does not exist");
         }
 
-        UserForUpdateDto userForUpdate = _mapper.Map<UserForUpdateDto>(user);
-        patchDoc.ApplyTo(userForUpdate);
-        _mapper.Map(userForUpdate, user);
+        UserForUpdateDto userToPatch = _mapper.Map<UserForUpdateDto>(user);
+
+        // There usually just is validation on objects which are coming from the request directly (e.g. [FromBody] LoginDto loginDto).
+        // To also apply validation to this patch request, you need to add "ModelState", which handles the state of the model creation, to the ApplyTo()
+        // method. When including it in the method call, the ApplyTo() method keeps track of the model state
+        patchDoc.ApplyTo(userToPatch, ModelState);
+
+        // To validate the model state, use TryValidateModel()
+        TryValidateModel(userToPatch);
+
+        // Handle what happens if the model state is invalid (The created model doesnt fit with the data validation (by data annotations or fluentAPI))
+        if(!ModelState.IsValid)
+        {
+            _logger.LogWarning("Patch request failed due to invalid data");
+            return BadRequest(ModelState);
+        }
+
+        _mapper.Map(userToPatch, user);
 
         await _userRepository.SaveChangesAsync();
 
