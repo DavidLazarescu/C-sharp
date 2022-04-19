@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using backend_learning.Infrastructure.DTOs.User;
 using backend_learning.Domain.Entities;
 using backend_learning.Infrastructure.Interfaces;
+using Infrastructure.RequestObjects;
 
 
 namespace backend_learning.Infrastructure.Repositories;
@@ -98,6 +99,18 @@ public class UserRepository : IUserRepository
                     .Where(x => x.UserId == id)
                     .ProjectTo<UserOutputDto>(_mapper.ConfigurationProvider)
                     .SingleOrDefaultAsync());
+    }
+
+    public async Task<IEnumerable<Job>> GetJobsByEmail(string email, JobRequestObject jobRequestObject)
+    {
+        var user = await GetUserByEmailAsync(email, true);
+        await _context.Entry(user).Collection(p => p.Jobs).LoadAsync();
+
+        var jobs = user.Jobs
+                  .Skip((jobRequestObject.PageNumber - 1) * jobRequestObject.PageSize)
+                  .Take(jobRequestObject.PageSize);
+
+        return jobs;
     }
 
     public async Task AddUserAsync(User user)

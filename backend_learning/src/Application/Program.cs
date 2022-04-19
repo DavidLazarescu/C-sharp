@@ -22,7 +22,7 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;    // Respects the dataformat the browser requests
     config.ReturnHttpNotAcceptable = true;   // Returns an error (406) if the result format type is not supported (e.g. text/css), else it'd default to JSON
-}).AddNewtonsoftJson()
+}).AddNewtonsoftJson()                       // Allow recognition of JsonPatchDocuments for Patch requests
   .AddXmlDataContractSerializerFormatters();     // Add XML serializer
 // You can add custom formatters as well
 

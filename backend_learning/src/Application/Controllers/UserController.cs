@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using backend_learning.Infrastructure.DTOs.User;
+using backend_learning.Infrastructure.DTOs.Job;
 using backend_learning.Infrastructure.Interfaces;
 using backend_learning.Domain.Entities;
 using Microsoft.AspNetCore.JsonPatch;
-
+using Infrastructure.RequestObjects;
 
 namespace backend_learning.Controllers;
 
@@ -101,5 +102,14 @@ public class UserController : ControllerBase
         await _userRepository.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    [HttpGet("{email}/jobs")]
+    public async Task<ActionResult<IEnumerable<JobOutputDto>>> GetJobsOfUser(string email, [FromQuery] JobRequestObject jobRequestObject)
+    {
+        var jobs = await _userRepository.GetJobsByEmail(email, jobRequestObject);
+        var jobDtos = _mapper.Map<IEnumerable<JobOutputDto>>(jobs);
+
+        return Ok(jobDtos);
     }
 }

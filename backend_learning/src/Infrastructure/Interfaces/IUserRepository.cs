@@ -1,5 +1,6 @@
 using backend_learning.Infrastructure.DTOs.User;
 using backend_learning.Domain.Entities;
+using Infrastructure.RequestObjects;
 
 
 namespace backend_learning.Infrastructure.Interfaces;
@@ -15,6 +16,7 @@ public interface IUserRepository
     public Task<User> GetUserByIdAsync(int id, bool trackChanges);
     public Task<UserOutputDto> GetUserDtoByEmailAsync(string email, bool trackChanges);
     public Task<UserOutputDto> GetUserDtoByIdAsync(int id, bool trackChanges);
+    public Task<IEnumerable<Job>> GetJobsByEmail(string email, JobRequestObject jobRequestObject);
     public Task<bool> UserAlreadyExistsAsync(string email);
     public Task<IEnumerable<UserOutputDto>> GetAllUserDtosAsync(bool trackChanges);
     public void Delete(User user);
