@@ -1,4 +1,4 @@
-using Application.Dtos;
+using Application.Common.Dtos;
 using AutoMapper;
 using Domain.Entities;
 
@@ -8,8 +8,7 @@ namespace Application.Common.Mappings
     {
         public UserAutomapperProfile()
         {
-            CreateMap<User, UserDto>()
-                .ForMember(dest => dest.AccountCreation, temp => temp.MapFrom(src => DateTime.UtcNow));
+            CreateMap<User, UserDto>();
         }
     }
 }

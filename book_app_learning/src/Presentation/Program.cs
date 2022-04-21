@@ -1,3 +1,5 @@
+using Infrastructure.Persistance;
+using Infrastructure.Persistance.Seeding;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation;
@@ -11,6 +13,18 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 
 var app = builder.Build();
+
+
+// Start up actions
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+    loggerFactory.AddFile(Directory.GetCurrentDirectory() + "Data/Logs/");
+
+    await DataContextSeeding.SeedDatabaseWithUsers(services.GetRequiredService<DataContext>());
+}
 
 
 // Http pipeline

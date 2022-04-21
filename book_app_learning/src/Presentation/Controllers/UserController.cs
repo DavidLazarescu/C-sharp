@@ -1,6 +1,7 @@
-using Application.Dtos;
+using Application.Common.Dtos;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using Application.Common.RequestParameters;
 
 namespace Presentation.Controllers
 {
@@ -9,18 +10,25 @@ namespace Presentation.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ILogger _logger;
 
-
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ILogger<UserController> logger)
         {
             _userService = userService;
+            _logger = logger;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] UserRequestParameter requestParameter)
         {
-            return Ok(await _userService.GetAllUserDtos());
+            if(requestParameter == null)
+            {
+                _logger.LogTrace("Getting users failed due to the request parameters being null");
+                return BadRequest("Invalid request parameters");
+            }
+
+            return Ok(await _userService.GetUsers(requestParameter));
         }
     }
 }

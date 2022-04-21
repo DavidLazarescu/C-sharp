@@ -11,8 +11,9 @@ namespace Presentation
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserService, UserService>();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies().Single(assembly => assembly.GetName().Name == "Application"));
-            
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddLogging();
+
             services.AddDbContext<DataContext>(options => {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });

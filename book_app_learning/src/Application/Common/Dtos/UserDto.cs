@@ -1,4 +1,4 @@
-namespace Application.Dtos
+namespace Application.Common.Dtos
 {
     public class UserDto
     {
@@ -7,7 +7,5 @@ namespace Application.Dtos
         public string LastName { get; set; }
 
         public int Age { get; set; }
-
-        public DateTime AccountCreation { get; set; }
     }
 }

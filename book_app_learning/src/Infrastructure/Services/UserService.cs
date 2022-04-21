@@ -1,5 +1,6 @@
-using Application.Dtos;
+using Application.Common.Dtos;
 using Application.Interfaces.Services;
+using Application.Common.RequestParameters;
 using Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
@@ -20,9 +21,19 @@ namespace Infrastructure.Services
         }
 
 
-        public async Task<IEnumerable<UserDto>> GetAllUserDtos()
+        public async Task<IEnumerable<UserDto>> GetUsers(UserRequestParameter requestParameter)
         {
-            return await _context.Users.ProjectTo<UserDto>(_mapper.ConfigurationProvider).ToListAsync();
+            if(!requestParameter.IsValid)
+            {
+                // Give error back
+            }
+
+            return await _context.Users
+                                 .AsNoTracking()
+                                 .Skip((requestParameter.PageNumber - 1) * requestParameter.PageSize)
+                                 .Take(requestParameter.PageSize)
+                                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
+                                 .ToListAsync();
         }
     }
 }
