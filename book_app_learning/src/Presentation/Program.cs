@@ -21,7 +21,7 @@ using(var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    loggerFactory.AddFile(Directory.GetCurrentDirectory() + "Data/Logs/");
+    loggerFactory.AddFile(Directory.GetCurrentDirectory() + "/Data/Logs/");
 
     await DataContextSeeding.SeedDatabaseWithUsers(services.GetRequiredService<DataContext>());
 }

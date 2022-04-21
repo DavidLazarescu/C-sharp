@@ -19,15 +19,15 @@ public class UserServiceTests : TestBase
     [InlineData(2, 2)]
     [InlineData(-1, 2)]
     [InlineData(0, 2)]
-    public async void GetsAllusers(int pageNumber, int pageSize)
+    public async void AUserServiceGetsUsers(int pageNumber, int pageSize)
     {
         // Arrange
         var context = await createDatabaseContextAsync();
         var userService = new UserService(context, _mapper);
         var requestParameter = new UserRequestParameter { PageNumber = pageNumber, PageSize = pageSize };
+        await DataContextSeeding.SeedDatabaseWithUsers(context);
 
         // Act
-        await DataContextSeeding.SeedDatabaseWithUsers(context);
         var expectedResult = await context.Users
                                           .AsNoTracking()
                                           .Skip((requestParameter.PageNumber - 1) * requestParameter.PageSize)

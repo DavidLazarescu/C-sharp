@@ -1,4 +1,4 @@
-using System.Reflection;
+using Application.Common.Interfaces.Services;
 using Application.Interfaces.Services;
 using Infrastructure.Persistance;
 using Infrastructure.Services;
@@ -11,6 +11,7 @@ namespace Presentation
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBookService, BookService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddLogging();
 

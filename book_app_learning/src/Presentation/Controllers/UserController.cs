@@ -24,7 +24,7 @@ namespace Presentation.Controllers
         {
             if(requestParameter == null)
             {
-                _logger.LogTrace("Getting users failed due to the request parameters being null");
+                _logger.LogInformation("Getting users failed due to the request parameters being null");
                 return BadRequest("Invalid request parameters");
             }
 
