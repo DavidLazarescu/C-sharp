@@ -1,3 +1,4 @@
+using Application.Common.Middleware;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Seeding;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ using(var scope = app.Services.CreateScope())
 
 
 // Http pipeline
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthorization();

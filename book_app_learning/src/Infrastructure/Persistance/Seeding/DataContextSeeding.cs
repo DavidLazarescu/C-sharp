@@ -25,7 +25,7 @@ namespace Infrastructure.Persistance.Seeding
                     Age = 20,
                     AccountCreation = DateTime.UtcNow,
                     Password = APassword.Item1,
-                    PasswordSeed = APassword.Item2
+                    PasswordKey = APassword.Item2
                 },
                 new User
                 {
@@ -35,7 +35,7 @@ namespace Infrastructure.Persistance.Seeding
                     Age = 42,
                     AccountCreation = DateTime.UtcNow,
                     Password = APassword.Item1,
-                    PasswordSeed = APassword.Item2,
+                    PasswordKey = APassword.Item2,
                     Books = new List<Book>
                     {
                         new Book
@@ -93,7 +93,7 @@ namespace Infrastructure.Persistance.Seeding
                     Age = 20,
                     AccountCreation = DateTime.UtcNow,
                     Password = APassword.Item1,
-                    PasswordSeed = APassword.Item2,
+                    PasswordKey = APassword.Item2,
                     Books = new List<Book>
                     {
                         new Book

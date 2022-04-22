@@ -6,6 +6,8 @@ namespace Application.Interfaces.Services
 {
     public interface IUserService
     {
-        public Task<IEnumerable<UserDto>> GetUsers(UserRequestParameter requestParameter);
+        public Task<IEnumerable<UserDto>> GetUsersAsync(UserRequestParameter requestParameter);
+        public Task<UserDto> GetUserByEmailAsync(string email);
+        public Task RegisterUserAsync(RegisterDto registerDto);
     }
 }

@@ -1,13 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
-namespace Domain.Entities
+namespace Application.Common.Dtos
 {
-    [Index(nameof(Email), IsUnique = true)]
-    public class User
+    public class RegisterDto
     {
-        public int UserId { get; set; }
-
         [Required]
         [MinLength(2, ErrorMessage = "The provided firstname is too short")]
         [MaxLength(40, ErrorMessage = "The provided firstname is too long")]
@@ -28,14 +24,6 @@ namespace Domain.Entities
         public int Age { get; set; }
 
         [Required]
-        public byte[] Password { get; set; }
-
-        [Required]
-        public byte[] PasswordKey { get; set; }
-
-        [Required]
-        public DateTime AccountCreation { get; set; }
-
-        public IEnumerable<Book> Books { get; set; }
+        public string Password { get; set; }
     }
 }

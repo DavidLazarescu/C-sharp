@@ -20,6 +20,6 @@ namespace Application.Common.Dtos
 
 
         public override string ToString() => JsonSerializer.Serialize(this, new JsonSerializerOptions
-        { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true });
+            { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true });
     }
 }

@@ -5,6 +5,7 @@ using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Infrastructure.UnitTests
 {
@@ -33,6 +34,11 @@ namespace Infrastructure.UnitTests
             await context.Database.EnsureCreatedAsync();
 
             return context;
+        }
+
+        protected string serializeToJson(object toSerialize)
+        {
+            return JsonConvert.SerializeObject(toSerialize);
         }
     }
 }

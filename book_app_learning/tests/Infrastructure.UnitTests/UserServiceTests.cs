@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using Application.Common.RequestParameters;
 using System;
+using Domain.Entities;
 
 namespace Tests.Infrastructure.UnitTests;
 
@@ -35,10 +36,32 @@ public class UserServiceTests : TestBase
                                           .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                                           .ToListAsync();
 
-        var actualResult = (await userService.GetUsers(requestParameter)).ToList();
-
+        var actualResult = (await userService.GetUsersAsync(requestParameter)).ToList();
 
         // Assert
-        Assert.Equal(JsonConvert.SerializeObject(expectedResult), JsonConvert.SerializeObject(actualResult));
+        Assert.Equal(serializeToJson(expectedResult), serializeToJson(actualResult));
+    }
+
+    [Theory]
+    [InlineData("KaktorDumbatz@gmail.com")]
+    [InlineData("LukeRatatui@gmail.com")]
+    [InlineData("SomethingNotExistent@troll.sdnbas")]
+    public async void AUserServiceGetsUserByEmail(string email)
+    {
+        // Arrange
+        var context = await createDatabaseContextAsync();
+        var userService = new UserService(context, _mapper);
+        await DataContextSeeding.SeedDatabaseWithUsers(context);
+
+        // Act
+        User user = await context.Users
+                                 .AsNoTracking()
+                                 .SingleOrDefaultAsync(user => user.Email == email);
+        var expectedResult = _mapper.Map<UserDto>(user);
+
+        var actualResult = await userService.GetUserByEmailAsync(email);
+
+        // Assert
+        Assert.Equal(serializeToJson(expectedResult), serializeToJson(actualResult));
     }
 }

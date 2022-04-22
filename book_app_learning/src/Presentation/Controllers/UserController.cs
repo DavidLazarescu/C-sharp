@@ -2,6 +2,7 @@ using Application.Common.Dtos;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Application.Common.RequestParameters;
+using Application.Common.Exceptions;
 
 namespace Presentation.Controllers
 {
@@ -19,16 +20,52 @@ namespace Presentation.Controllers
         }
 
 
+        [HttpGet("{email}")]
+        public async Task<ActionResult<UserDto>> GetUserByEmail(string email)
+        {
+            if (email == null)
+            {
+                _logger.LogInformation("Getting user by email failed due to the email parameter being null");
+                return BadRequest("You need to specify an email");
+            }
+
+            return await _userService.GetUserByEmailAsync(email);
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] UserRequestParameter requestParameter)
         {
-            if(requestParameter == null)
+            if (requestParameter == null)
             {
                 _logger.LogInformation("Getting users failed due to the request parameters being null");
                 return BadRequest("Invalid request parameters");
             }
 
-            return Ok(await _userService.GetUsers(requestParameter));
+            try
+            {
+                var result = await _userService.GetUsersAsync(requestParameter);
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                _logger.LogInformation("Getting users failed: " + e.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("register")]
+        public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
+        {
+            try
+            {
+                await _userService.RegisterUserAsync(registerDto);
+                return CreatedAtRoute("Register", registerDto);
+            }
+            catch(Exception e)
+            {
+                _logger.LogInformation("Registering user failed: " + e.Message);
+                return BadRequest(e.Message);
+            }
         }
     }
 }
