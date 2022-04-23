@@ -25,7 +25,7 @@ namespace Presentation.Controllers
         {
             if (email == null)
             {
-                _logger.LogInformation("Getting user by email failed due to the email parameter being null");
+                _logger.LogWarning("Getting user by email failed due to the email parameter being null");
                 return BadRequest("You need to specify an email");
             }
 
@@ -37,7 +37,7 @@ namespace Presentation.Controllers
         {
             if (requestParameter == null)
             {
-                _logger.LogInformation("Getting users failed due to the request parameters being null");
+                _logger.LogWarning("Getting users failed due to the request parameters being null");
                 return BadRequest("Invalid request parameters");
             }
 
@@ -46,9 +46,9 @@ namespace Presentation.Controllers
                 var result = await _userService.GetUsersAsync(requestParameter);
                 return Ok(result);
             }
-            catch(Exception e)
+            catch(InvalidParameterException e)
             {
-                _logger.LogInformation("Getting users failed: " + e.Message);
+                _logger.LogWarning("Getting users failed: " + e.Message);
                 return BadRequest(e.Message);
             }
         }
@@ -61,7 +61,7 @@ namespace Presentation.Controllers
                 await _userService.RegisterUserAsync(registerDto);
                 return CreatedAtRoute("Register", registerDto);
             }
-            catch(Exception e)
+            catch(InvalidParameterException e)
             {
                 _logger.LogInformation("Registering user failed: " + e.Message);
                 return BadRequest(e.Message);

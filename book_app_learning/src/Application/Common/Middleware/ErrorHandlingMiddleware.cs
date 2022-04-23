@@ -35,7 +35,7 @@ namespace Application.Common.Middleware
 
                 var response = _env.IsDevelopment() ?
                                 new ApiErrorDto(context.Response.StatusCode, ex.Message, ex.StackTrace)
-                                : new ApiErrorDto(context.Response.StatusCode, ex.Message);
+                                : new ApiErrorDto(context.Response.StatusCode, "An error occured");
 
 
                 await context.Response.WriteAsync(response.ToString());
