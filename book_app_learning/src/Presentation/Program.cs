@@ -9,7 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Services
-builder.Services.AddControllers();
+builder.Services.AddControllers(config => {
+    config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;
+}).AddNewtonsoftJson()
+  .AddXmlDataContractSerializerFormatters();
+
 builder.Services.AddApplicationServices(builder.Configuration);
 
 

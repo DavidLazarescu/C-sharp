@@ -9,6 +9,9 @@ using Domain.Entities;
 using System.Security.Cryptography;
 using System.Text;
 using Application.Common.Exceptions;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Infrastructure.Services
 {
@@ -37,9 +40,7 @@ namespace Infrastructure.Services
         public async Task<IEnumerable<UserDto>> GetUsersAsync(UserRequestParameter requestParameter)
         {
             if(!requestParameter.IsValid)
-            {
                 throw new InvalidParameterException("Request parameters are invalid");
-            }
 
             return await _context.Users
                                  .AsNoTracking()
@@ -52,9 +53,7 @@ namespace Infrastructure.Services
         public async Task RegisterUserAsync(RegisterDto registerDto)
         {
             if(_context.Users.Any(user => user.Email == registerDto.Email))
-            {
                 throw new InvalidParameterException("A user with this email already exists");
-            }
 
             User user = _mapper.Map<User>(registerDto);
             
@@ -63,6 +62,28 @@ namespace Infrastructure.Services
             user.PasswordKey = hashedPasswordAndKey.Item2;
 
             await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchUserAsync(string email, JsonPatchDocument<UserUpdateDto> patchDoc, ControllerBase controllerBase)
+        {
+            User user = await _context.Users.SingleOrDefaultAsync(user => user.Email == email);
+
+            if(user == null)
+                throw new InvalidParameterException("No user with this emails address exists");
+
+
+            var userToPatch = _mapper.Map<UserUpdateDto>(user);
+
+            patchDoc.ApplyTo(userToPatch, controllerBase.ModelState);
+            controllerBase.TryValidateModel(controllerBase.ModelState);
+            
+            if(!controllerBase.ModelState.IsValid)
+                throw new InvalidParameterException("The provided user update data is invalid");
+
+
+            _mapper.Map(userToPatch, user);
+            
             await _context.SaveChangesAsync();
         }
 

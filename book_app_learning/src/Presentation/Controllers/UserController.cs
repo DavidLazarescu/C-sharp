@@ -3,6 +3,8 @@ using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Application.Common.RequestParameters;
 using Application.Common.Exceptions;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Presentation.Controllers
 {
@@ -46,7 +48,33 @@ namespace Presentation.Controllers
                 var result = await _userService.GetUsersAsync(requestParameter);
                 return Ok(result);
             }
-            catch(InvalidParameterException e)
+            catch (InvalidParameterException e)
+            {
+                _logger.LogWarning("Getting users failed: " + e.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPatch("{email}")]
+        public async Task<ActionResult> PatchUser(string email, [FromBody] JsonPatchDocument<UserUpdateDto> patchDoc)
+        {
+            if (email == null)
+            {
+                _logger.LogWarning("Patching the user failed due to the email parameter being null");
+                return BadRequest("You need to specify an email");
+            }
+            if (patchDoc == null)
+            {
+                _logger.LogWarning("Patching the user failed due to the patchDoc parameter being null");
+                return BadRequest("You need to specify user data");
+            }
+
+            try
+            {
+                await _userService.PatchUserAsync(email, patchDoc, this);
+                return NoContent();
+            }
+            catch (InvalidParameterException e)
             {
                 _logger.LogWarning("Getting users failed: " + e.Message);
                 return BadRequest(e.Message);
@@ -54,14 +82,14 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
+        public async Task<ActionResult> RegisterUser([FromBody] RegisterDto registerDto)
         {
             try
             {
                 await _userService.RegisterUserAsync(registerDto);
                 return CreatedAtRoute("Register", registerDto);
             }
-            catch(InvalidParameterException e)
+            catch (InvalidParameterException e)
             {
                 _logger.LogInformation("Registering user failed: " + e.Message);
                 return BadRequest(e.Message);
