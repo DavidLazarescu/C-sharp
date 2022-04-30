@@ -1,8 +1,6 @@
 using Application.Common.Middleware;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Seeding;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +14,8 @@ builder.Services.AddControllers(config => {
   .AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
 
 
 var app = builder.Build();
@@ -37,6 +37,7 @@ using(var scope = app.Services.CreateScope())
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

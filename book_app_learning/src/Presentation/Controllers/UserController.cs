@@ -80,20 +80,5 @@ namespace Presentation.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        [HttpPost("register")]
-        public async Task<ActionResult> RegisterUser([FromBody] RegisterDto registerDto)
-        {
-            try
-            {
-                await _userService.RegisterUserAsync(registerDto);
-                return CreatedAtRoute("Register", registerDto);
-            }
-            catch (InvalidParameterException e)
-            {
-                _logger.LogInformation("Registering user failed: " + e.Message);
-                return BadRequest(e.Message);
-            }
-        }
     }
 }

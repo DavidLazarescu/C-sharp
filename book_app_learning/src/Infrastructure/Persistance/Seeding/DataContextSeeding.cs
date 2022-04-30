@@ -1,8 +1,4 @@
-// using System.Text.
-using System.Security.Cryptography;
-using System.Text;
 using Domain.Entities;
-using Infrastructure.Persistance;
 
 namespace Infrastructure.Persistance.Seeding
 {
@@ -13,7 +9,6 @@ namespace Infrastructure.Persistance.Seeding
             if (context.Users.Any())
                 return;
 
-            var APassword = GetHasedPasswordAndKey("Password123");
 
             var users = new List<User>
             {
@@ -23,9 +18,7 @@ namespace Infrastructure.Persistance.Seeding
                     LastName = "Ratatui",
                     Email = "LukeRatatui@gmail.com",
                     Age = 20,
-                    AccountCreation = DateTime.UtcNow,
-                    Password = APassword.Item1,
-                    PasswordKey = APassword.Item2
+                    AccountCreation = DateTime.UtcNow
                 },
                 new User
                 {
@@ -34,8 +27,6 @@ namespace Infrastructure.Persistance.Seeding
                     Email = "LisaLambatz",
                     Age = 42,
                     AccountCreation = DateTime.UtcNow,
-                    Password = APassword.Item1,
-                    PasswordKey = APassword.Item2,
                     Books = new List<Book>
                     {
                         new Book
@@ -49,14 +40,12 @@ namespace Infrastructure.Persistance.Seeding
                                 new Author
                                 {
                                     FirstName = "Lerry",
-                                    LastName = "Wheelson",
-                                    Age = 41
+                                    LastName = "Wheelson"
                                 },
                                 new Author
                                 {
                                     FirstName = "Major",
-                                    LastName = "Tom",
-                                    Age = 56
+                                    LastName = "Tom"
                                 }
                             }
                         },
@@ -71,8 +60,7 @@ namespace Infrastructure.Persistance.Seeding
                                 new Author
                                 {
                                     FirstName = "Alfred",
-                                    LastName = "Orus",
-                                    Age = 43
+                                    LastName = "Orus"
                                 }
                             }
                         },
@@ -92,8 +80,6 @@ namespace Infrastructure.Persistance.Seeding
                     Email = "KaktorDumbatz@gmail.com",
                     Age = 20,
                     AccountCreation = DateTime.UtcNow,
-                    Password = APassword.Item1,
-                    PasswordKey = APassword.Item2,
                     Books = new List<Book>
                     {
                         new Book
@@ -114,14 +100,12 @@ namespace Infrastructure.Persistance.Seeding
                                 new Author
                                 {
                                     FirstName = "Lerry",
-                                    LastName = "Wheelson",
-                                    Age = 41
+                                    LastName = "Wheelson"
                                 },
                                 new Author
                                 {
                                     FirstName = "Major",
-                                    LastName = "Tom",
-                                    Age = 56
+                                    LastName = "Tom"
                                 }
                             }
                         }
@@ -131,14 +115,6 @@ namespace Infrastructure.Persistance.Seeding
 
             context.AddRange(users);
             await context.SaveChangesAsync();
-        }
-
-        private static ValueTuple<byte[], byte[]> GetHasedPasswordAndKey(string password)
-        {
-            var hmac = new HMACSHA256();
-            var result = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-            return (result, hmac.Key);
         }
     }
 }

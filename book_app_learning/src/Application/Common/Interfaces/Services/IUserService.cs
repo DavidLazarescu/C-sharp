@@ -9,7 +9,6 @@ namespace Application.Interfaces.Services
     {
         public Task<IEnumerable<UserDto>> GetUsersAsync(UserRequestParameter requestParameter);
         public Task<UserDto> GetUserByEmailAsync(string email);
-        public Task RegisterUserAsync(RegisterDto registerDto);
         public Task PatchUserAsync(string email, JsonPatchDocument<UserUpdateDto> patchDoc, ControllerBase controllerBase);
     }
 }

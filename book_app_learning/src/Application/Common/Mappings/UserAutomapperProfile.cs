@@ -12,14 +12,9 @@ namespace Application.Common.Mappings
             CreateMap<User, UserDto>();
             
             CreateMap<RegisterDto, User>()
-                .ForMember(dest => dest.AccountCreation, temp => temp.MapFrom(src => DateTime.UtcNow))
-                .ForMember(dest => dest.Password, temp => temp.Ignore());
+                .ForMember(dest => dest.AccountCreation, temp => temp.MapFrom(src => DateTime.UtcNow));
             
-            CreateMap<User, UserUpdateDto>()
-                .ForMember(dest => dest.Password, temp => temp.MapFrom(src => Encoding.Default.GetString(src.Password)));
-
-            CreateMap<UserUpdateDto, User>()
-                .ForMember(dest => dest.Password, temp => temp.MapFrom(src => Encoding.UTF8.GetBytes(src.Password)));
+            CreateMap<User, UserUpdateDto>().ReverseMap();
         }
     }
 }

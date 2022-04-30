@@ -50,21 +50,6 @@ namespace Infrastructure.Services
                                  .ToListAsync();
         }
 
-        public async Task RegisterUserAsync(RegisterDto registerDto)
-        {
-            if(_context.Users.Any(user => user.Email == registerDto.Email))
-                throw new InvalidParameterException("A user with this email already exists");
-
-            User user = _mapper.Map<User>(registerDto);
-            
-            var hashedPasswordAndKey = GeneratePasswordHashAndKey(registerDto.Password);
-            user.Password = hashedPasswordAndKey.Item1;
-            user.PasswordKey = hashedPasswordAndKey.Item2;
-
-            await _context.AddAsync(user);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task PatchUserAsync(string email, JsonPatchDocument<UserUpdateDto> patchDoc, ControllerBase controllerBase)
         {
             User user = await _context.Users.SingleOrDefaultAsync(user => user.Email == email);
