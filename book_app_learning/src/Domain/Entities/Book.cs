@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
     public class Book
     {
+        [Key]
         public int BookId { get; set; }
 
         [Required]
@@ -22,5 +24,6 @@ namespace Domain.Entities
         public string Format { get; set; }
 
         public IEnumerable<Author> Authors { get; set; }
+        public User User { get; set; }
     }
 }

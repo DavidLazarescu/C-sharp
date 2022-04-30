@@ -7,7 +7,7 @@ namespace Domain.Entities
     [Index(nameof(Email), IsUnique = true)]
     public class User : IdentityUser
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "The provided firstname is too short")]
@@ -31,6 +31,7 @@ namespace Domain.Entities
         [Required]
         public DateTime AccountCreation { get; set; }
 
+        
         public IEnumerable<Book> Books { get; set; }
     }
 }
