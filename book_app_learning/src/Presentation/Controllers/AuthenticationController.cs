@@ -1,6 +1,7 @@
 using Application.Common.Dtos;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
@@ -19,7 +20,7 @@ namespace Presentation.Controllers
             _logger = logger;
         }
 
-
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterDto registerDto)
         {
@@ -41,6 +42,7 @@ namespace Presentation.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] LoginDto loginDto)
         {

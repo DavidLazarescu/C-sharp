@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/users")]
     public class UserController : ControllerBase
@@ -35,11 +36,11 @@ namespace Presentation.Controllers
             return await _userService.GetUserByEmailAsync(email);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] UserRequestParameter requestParameter)
         {
-            if (requestParameter == null)
+                if (requestParameter == null)
             {
                 _logger.LogWarning("Getting users failed due to the request parameters being null");
                 return BadRequest("Invalid request parameters");

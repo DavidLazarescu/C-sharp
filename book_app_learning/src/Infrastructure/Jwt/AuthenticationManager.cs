@@ -73,7 +73,7 @@ namespace Infrastructure.Jwt
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JTW:ValidAudience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(10000),
+                expires: DateTime.Now.AddMonths(2),
                 signingCredentials: signingCredentials
             );
 
