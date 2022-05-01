@@ -61,6 +61,7 @@ namespace Presentation
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
                     ValidIssuer = configuration["JWT:ValidIssuer"],
