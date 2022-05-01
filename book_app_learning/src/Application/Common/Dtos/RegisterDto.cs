@@ -27,5 +27,7 @@ namespace Application.Common.Dtos
         [MinLength(6, ErrorMessage = "The provided password is too short")]
         [MaxLength(60, ErrorMessage = "The provided password is too long")]
         public string Password { get; set; }
+
+        public IEnumerable<string> Roles { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Application.Common.RequestParameters;
 using Application.Common.Exceptions;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
@@ -34,6 +35,7 @@ namespace Presentation.Controllers
             return await _userService.GetUserByEmailAsync(email);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] UserRequestParameter requestParameter)
         {

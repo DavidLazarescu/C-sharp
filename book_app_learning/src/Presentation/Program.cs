@@ -16,6 +16,7 @@ builder.Services.AddControllers(config => {
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJWT(builder.Configuration);
 
 
 var app = builder.Build();

@@ -12,6 +12,7 @@ namespace Application.Common.Mappings
             CreateMap<User, UserDto>();
             
             CreateMap<RegisterDto, User>()
+                .ForMember(dest => dest.UserName, temp => temp.MapFrom(src => src.Email))
                 .ForMember(dest => dest.AccountCreation, temp => temp.MapFrom(src => DateTime.UtcNow));
             
             CreateMap<User, UserUpdateDto>().ReverseMap();

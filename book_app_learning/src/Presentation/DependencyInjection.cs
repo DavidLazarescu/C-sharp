@@ -1,10 +1,15 @@
+using System.Text;
+using Application.Common.Interfaces.Managers;
 using Application.Common.Interfaces.Services;
 using Application.Interfaces.Services;
 using Domain.Entities;
 using Infrastructure.Persistance;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Infrastructure.Jwt;
 
 namespace Presentation
 {
@@ -14,6 +19,8 @@ namespace Presentation
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAuthenticationManager, AuthenticationManager>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddLogging();
 
@@ -37,6 +44,30 @@ namespace Presentation
 
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+        }
+
+        public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
+        {
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = configuration["JWT:ValidIssuer"],
+                    ValidAudience = configuration["JWT:ValidAudience"],
+                    IssuerSigningKey = signingKey
+                };
+            });
         }
     }
 }
